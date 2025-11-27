@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finanse Bez Stresu - Twoj Spokój Finansowy</title>
+    <!-- Ładowanie Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Konfiguracja Fontu Inter -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f9fc; /* Delikatne tło */
+        }
+        /* Custom styles for professional look */
+        .hero-bg {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); /* Ciemny, zaufany gradient */
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Nagłówek i Nawigacja -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo i Nazwa Firmy -->
+                <div class="flex-shrink-0">
+                    <a href="#" class="text-2xl font-bold text-blue-700">
+                        <span class="text-3xl mr-1">💰</span> Finanse <span class="text-blue-500">bez stresu</span>
+                    </a>
+                </div>
+                <!-- Menu Główne -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#about" class="text-gray-600 hover:text-blue-700 font-medium transition duration-150">O nas</a>
+                    <a href="#services" class="text-gray-600 hover:text-blue-700 font-medium transition duration-150">Usługi</a>
+                    <a href="#contact" class="text-gray-600 hover:text-blue-700 font-medium transition duration-150">Kontakt</a>
+                    <a href="https://facebook.com/finansebezstresu" target="_blank" class="text-blue-700 hover:text-blue-900 font-medium transition duration-150 flex items-center">
+                        <!-- Ikona Facebooka (Inline SVG) -->
+                        <svg class="w-5 h-5 mr-1" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.043c-5.467 0-9.927 4.415-9.927 9.873 0 5.093 3.684 9.351 8.533 9.743v-7.018h-2.316v-2.725h2.316v-2.007c0-2.289 1.366-3.567 3.473-3.567 1.002 0 1.968.178 1.968.178v2.17h-1.111c-1.1 0-1.444.686-1.444 1.401v1.825h2.553l-.409 2.725h-2.144v7.018c4.849-.392 8.533-4.65 8.533-9.743 0-5.458-4.46-9.873-9.927-9.873z"/></svg>
+                        FB
+                    </a>
+                </nav>
+                <!-- Przycisk menu dla mobile -->
+                <button class="md:hidden p-2 rounded-md text-gray-700 hover:bg-gray-100 transition duration-150" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </div>
+        <!-- Menu Mobilne -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg border-t border-gray-100">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-blue-50">O nas</a>
+                <a href="#services" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-blue-50">Usługi</a>
+                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-blue-50">Kontakt</a>
+                <a href="https://facebook.com/finansebezstresu" target="_blank" class="block px-3 py-2 rounded-md text-base font-medium text-blue-700 hover:bg-blue-50">Znajdź nas na FB</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Sekcja Hero - Wstęp -->
+        <section class="hero-bg text-white py-20 sm:py-28 lg:py-36 rounded-b-xl shadow-xl">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight mb-4">
+                    Koniec ze stresem finansowym.
+                </h1>
+                <p class="text-xl sm:text-2xl font-light mb-8 opacity-90">
+                    Pomożemy Ci zadbać o Twoje finanse. Kompleksowe doradztwo: kredyty, ubezpieczenia, inwestycje.
+                </p>
+                <a href="#contact" class="inline-block bg-white text-blue-700 font-bold py-3 px-8 rounded-full shadow-lg hover:bg-gray-100 transition duration-300 transform hover:scale-105">
+                    Umów bezpłatną konsultację
+                </a>
+                <p class="mt-4 text-sm opacity-75">
+                    *Gwarantujemy poufność i profesjonalne podejście.
+                </p>
+            </div>
+        </section>
+
+        <!-- Sekcja O Nas -->
+        <section id="about" class="py-16 sm:py-24">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="lg:flex lg:items-center lg:justify-between">
+                    <div class="lg:w-1/2 lg:pr-10">
+                        <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl mb-4">
+                            O Finansach bez Stresu
+                        </h2>
+                        <p class="mt-4 text-lg text-gray-600 leading-relaxed">
+                            Jesteśmy zespołem doświadczonych doradców, których misją jest upraszczanie skomplikowanego świata finansów. Rozumiemy, że kredyty, ubezpieczenia czy inwestycje mogą być źródłem niepokoju. Naszym celem jest przejęcie tego stresu i przeprowadzenie Cię przez proces w sposób jasny, bezpieczny i efektywny.
+                        </p>
+                        <p class="mt-4 text-lg text-gray-600 leading-relaxed font-semibold">
+                            Twoje bezpieczeństwo finansowe jest naszym priorytetem.
+                        </p>
+                    </div>
+                    <!-- Placeholder image/icon -->
+                    <div class="lg:w-1/2 mt-10 lg:mt-0 flex justify-center">
+                        <img src="https://placehold.co/400x300/e0f2f1/047857?text=Twoj+Spokój+Finansowy" alt="Obraz symbolizujący spokój i bezpieczeństwo finansowe." class="rounded-xl shadow-2xl">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sekcja Usługi - Główne obszary działania -->
+        <section id="services" class="bg-blue-50 py-16 sm:py-24">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-center text-3xl font-extrabold text-gray-900 sm:text-4xl mb-12">
+                    Nasze Usługi - Zadbaj o każdy aspekt
+                </h2>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Kredyty -->
+                    <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 border-t-4 border-blue-600">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-3 flex items-center">
+                            <span class="mr-3 text-3xl text-blue-600">🏠</span> Kredyty
+                        </h3>
+                        <p class="text-gray-600 mb-4">
+                            Hipoteczne, gotówkowe, firmowe. Pomagamy w wyborze najlepszej oferty, negocjacjach warunków i dopełnianiu wszystkich formalności.
+                        </p>
+                        <a href="#" class="text-blue-600 font-semibold hover:text-blue-800 transition duration-150">
+                            Więcej o Kredytach &rarr;
+                        </a>
+                    </div>
+
+                    <!-- Ubezpieczenia -->
+                    <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 border-t-4 border-green-600">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-3 flex items-center">
+                            <span class="mr-3 text-3xl text-green-600">🛡️</span> Ubezpieczenia
+                        </h3>
+                        <p class="text-gray-600 mb-4">
+                            Na życie, majątkowe, komunikacyjne (OC/AC) i zdrowotne. Kompleksowa ochrona dla Ciebie, Twojej rodziny i majątku.
+                        </p>
+                        <a href="#" class="text-green-600 font-semibold hover:text-green-800 transition duration-150">
+                            Więcej o Ubezpieczeniach &rarr;
+                        </a>
+                    </div>
+
+                    <!-- Oszczędności i Inwestycje -->
+                    <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 border-t-4 border-yellow-600">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-3 flex items-center">
+                            <span class="mr-3 text-3xl text-yellow-600">📈</span> Oszczędności
+                        </h3>
+                        <p class="text-gray-600 mb-4">
+                            Tworzenie poduszki finansowej i plany inwestycyjne. Pomoc w osiąganiu długoterminowych celów bez niepotrzebnego ryzyka.
+                        </p>
+                        <a href="#" class="text-yellow-600 font-semibold hover:text-yellow-800 transition duration-150">
+                            Więcej o Inwestycjach &rarr;
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Sekcja dla Wersji Ukraińskiej (Opcjonalnie) -->
+                <div class="mt-16 text-center p-6 bg-white rounded-xl shadow-inner border border-gray-200">
+                    <p class="text-xl font-bold text-gray-800 mb-2">
+                        Obsługa w języku ukraińskim
+                    </p>
+                    <p class="text-gray-600">
+                        Prowadzimy doradztwo finansowe również w języku ukraińskim. Skontaktuj się, aby uzyskać wsparcie.
+                        <span class="text-lg">🇺🇦</span>
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Sekcja Kontakt i Formularz -->
+        <section id="contact" class="py-16 sm:py-24">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-center text-3xl font-extrabold text-gray-900 sm:text-4xl mb-12">
+                    Skontaktuj się z nami
+                </h2>
+                <div class="lg:flex lg:space-x-12">
+                    
+                    <!-- Formularz Kontaktowy (Wymagany element) -->
+                    <div class="lg:w-2/3 bg-white p-8 sm:p-10 rounded-xl shadow-2xl">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-6">Wyślij wiadomość</h3>
+                        <form id="contactForm" onsubmit="handleFormSubmit(event)">
+                            <div class="space-y-6">
+                                <div>
+                                    <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Imię i Nazwisko</label>
+                                    <input type="text" id="name" name="name" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition duration-150">
+                                </div>
+                                <div>
+                                    <label for="email" class="block text-sm font-medium text-gray-700 mb-1">E-mail</label>
+                                    <input type="email" id="email" name="email" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition duration-150">
+                                </div>
+                                <div>
+                                    <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Telefon</label>
+                                    <!-- Używamy placeholderu z polskim formatem numeru -->
+                                    <input type="tel" id="phone" name="phone" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition duration-150" placeholder="+48 XXX XXX XXX">
+                                </div>
+                                <div>
+                                    <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Wiadomość</label>
+                                    <textarea id="message" name="message" rows="4" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition duration-150"></textarea>
+                                </div>
+                                <div id="formMessage" class="hidden p-3 rounded-lg text-center font-semibold"></div>
+                                <button type="submit" class="w-full bg-blue-700 text-white font-bold py-3 rounded-lg shadow-lg hover:bg-blue-800 transition duration-300 transform hover:scale-[1.01]">
+                                    Wyślij wiadomość
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Informacje Kontaktowe -->
+                    <div class="lg:w-1/3 mt-12 lg:mt-0 space-y-8 p-8 bg-blue-700 text-white rounded-xl shadow-2xl">
+                        <h3 class="text-2xl font-bold border-b border-white border-opacity-30 pb-3 mb-4">Dane do kontaktu</h3>
+                        <div class="flex items-start">
+                            <span class="mr-3 text-2xl">📧</span>
+                            <div>
+                                <p class="font-semibold">E-mail Biura</p>
+                                <a href="mailto:biuro@finansebezstresu.pl" class="hover:underline">biuro@finansebezstresu.pl</a>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="mr-3 text-2xl">📞</span>
+                            <div>
+                                <p class="font-semibold">Telefon</p>
+                                <!-- Wprowadzony placeholder numeru z linkiem tel: -->
+                                <a href="tel:+48123456789" class="text-lg hover:underline">+48 123 456 789</a>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="mr-3 text-2xl">📍</span>
+                            <div>
+                                <p class="font-semibold">Adres</p>
+                                <p>ul. Przykładowa 10</p>
+                                <p>00-001 Warszawa</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-4 pt-4">
+                            <a href="https://facebook.com/finansebezstresu" target="_blank" class="text-white hover:text-blue-200 transition duration-150">
+                                <!-- Duża ikona Facebooka -->
+                                <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.043c-5.467 0-9.927 4.415-9.927 9.873 0 5.093 3.684 9.351 8.533 9.743v-7.018h-2.316v-2.725h2.316v-2.007c0-2.289 1.366-3.567 3.473-3.567 1.002 0 1.968.178 1.968.178v2.17h-1.111c-1.1 0-1.444.686-1.444 1.401v1.825h2.553l-.409 2.725h-2.144v7.018c4.849-.392 8.533-4.65 8.533-9.743 0-5.458-4.46-9.873-9.927-9.873z"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Stopka -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p>&copy; 2025 Finanse bez stresu. Wszelkie prawa zastrzeżone.</p>
+            <p class="mt-2 text-sm text-gray-400">
+                <a href="#" class="hover:text-white">Polityka Prywatności</a> |
+                <a href="#" class="hover:text-white">Regulamin</a>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Funkcja do obsługi formularza (symulacja wysyłki na backend)
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const form = event.target;
+            const messageDiv = document.getElementById('formMessage');
+            
+            // Ukrycie poprzednich wiadomości i resetowanie klas
+            messageDiv.classList.add('hidden');
+            messageDiv.classList.remove('bg-red-200', 'text-red-800', 'bg-green-200', 'text-green-800');
+
+            // Symulacja wysyłki danych do API/backendu
+            // W rzeczywistości, tutaj należałoby wykonać fetch() do skryptu obsługującego wysyłkę e-maili
+            
+            // W tym projekcie symulujemy sukces po 1 sekundzie
+            
+            messageDiv.textContent = 'Wysyłanie wiadomości... Proszę czekać.';
+            messageDiv.classList.remove('hidden');
+            messageDiv.classList.add('bg-blue-100', 'text-blue-700');
+
+            setTimeout(() => {
+                // Symulacja pomyślnego wysłania
+                messageDiv.textContent = 'Dziękujemy! Twoja wiadomość została wysłana. Skontaktujemy się wkrótce.';
+                messageDiv.classList.remove('bg-blue-100', 'text-blue-700');
+                messageDiv.classList.add('bg-green-200', 'text-green-800');
+                form.reset(); // Czyszczenie formularza
+            }, 1500);
+
+            // W przypadku błędu (przykładowo):
+            /*
+            setTimeout(() => {
+                messageDiv.textContent = 'Wystąpił błąd podczas wysyłania. Spróbuj ponownie później lub zadzwoń.';
+                messageDiv.classList.remove('bg-blue-100', 'text-blue-700');
+                messageDiv.classList.add('bg-red-200', 'text-red-800');
+            }, 1500);
+            */
+        }
+    </script>
+
+</body>
+</html>
