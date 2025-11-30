@@ -18,6 +18,7 @@
         :root {
             --color-accent: #ff7f50; /* Koralowy/Neonowy Pomarańcz */
             --color-secondary: #3b82f6; /* Elektryczny Niebieski */
+            --color-insurance: #10b981; /* Neonowa Zieleń */
         }
         /* Dynamiczne tło dla sekcji Hero (symulacja danych) */
         .hero-bg {
@@ -26,6 +27,27 @@
             overflow: hidden;
             border-bottom: 5px solid var(--color-accent); /* Linia akcentu */
         }
+        
+        /* Animacja siatki w tle Hero */
+        .hero-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.1; 
+            pointer-events: none;
+            background-image: radial-gradient(var(--color-secondary) 1px, transparent 1px);
+            background-size: 30px 30px;
+            animation: pulseGrid 15s infinite alternate;
+        }
+
+        @keyframes pulseGrid {
+            from { background-size: 30px 30px; opacity: 0.1; }
+            to { background-size: 40px 40px; opacity: 0.05; }
+        }
+
         /* Styl dla przycisków Premium */
         .btn-premium {
             background-color: var(--color-accent);
@@ -55,57 +77,70 @@
             border-color: var(--color-accent);
         }
         
-        /* Animacja Wykresu (dla czystej estetyki) */
-        .chart-line {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            opacity: 0.08; /* Bardzo subtelne tło */
-            pointer-events: none;
+        /* Styl dla ikony SVG w sekcji usług */
+        .service-icon {
+            width: 55px; 
+            height: 55px; 
+            margin-bottom: 1rem;
+            /* Upewnienie się, że ikona ma kolor zdefiniowany przez rodzica */
+            color: currentColor; 
         }
-        /* Styl dla ukrytego Modalu (ciemne tło) */
-        .modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.85); /* Bardziej intensywny półprzezroczysty czarny */
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            backdrop-filter: blur(8px);
-        }
-        .modal-content {
-            background-color: #1e293b;
-            padding: 3rem;
-            border-radius: 1.5rem;
-            max-width: 90%;
-            width: 550px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
-            border: 2px solid var(--color-accent);
-            animation: fadeIn 0.3s ease-out;
-            color: #e2e8f0;
-        }
-        .modal-option {
-            background-color: #0f172a;
-            border: 1px solid #334155;
-            color: #e2e8f0;
-            transition: all 0.3s;
-        }
-        .modal-option:hover {
-            background-color: #2d3748;
-            box-shadow: 0 0 15px rgba(255, 127, 80, 0.5);
-            border-color: var(--color-accent);
-        }
-        
+
         /* Nowoczesny pasek nawigacyjny */
         .navbar-shadow {
              box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Pełne style dla Modalu Kontaktowego */
+        .modal {
+            display: none; /* Domyślnie ukryty */
+            position: fixed;
+            z-index: 100; /* Nad wszystkimi elementami */
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.8); /* Półprzezroczyste czarne tło */
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #1e293b; /* Tło modala */
+            margin: 5% auto; 
+            padding: 30px;
+            border-radius: 1.5rem;
+            border: 2px solid var(--color-accent);
+            width: 90%; 
+            max-width: 550px; 
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.7);
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .modal-option {
+            background-color: #334155;
+            color: #e2e8f0;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+        }
+        .modal-option:hover {
+            background-color: #475569;
+        }
+        /* Style dla opcji premium w modal */
+        .modal-option.premium {
+            background-color: var(--color-accent) !important;
+            color: #0f172a !important;
+            border-color: var(--color-accent);
+        }
+        .modal-option.premium:hover {
+            background-color: #ff9168 !important;
         }
     </style>
 </head>
@@ -126,7 +161,6 @@
                     <a href="#about" class="text-gray-300 hover:text-[var(--color-accent)] font-medium transition duration-150" data-lang-key="nav_about">O nas</a>
                     <a href="#benefits" class="text-gray-300 hover:text-[var(--color-accent)] font-medium transition duration-150" data-lang-key="nav_benefits">Wartości</a>
                     <a href="#services" class="text-gray-300 hover:text-[var(--color-accent)] font-medium transition duration-150" data-lang-key="nav_services">Oferta</a>
-                    <!-- Zmiana linku Kontakt na otwieranie modalu -->
                     <button onclick="openContactModal()" class="text-gray-300 hover:text-[var(--color-accent)] font-medium transition duration-150" data-lang-key="nav_contact">Kontakt</button>
                     <!-- Selektor Języka (Desktop) -->
                     <select id="language-selector-desktop" onchange="setLanguage(this.value)" class="bg-[#334155] border-2 border-slate-700 text-white text-sm rounded-xl focus:ring-[var(--color-accent)] focus:border-[var(--color-accent)] p-2 pr-8 cursor-pointer shadow-inner">
@@ -147,7 +181,6 @@
                 <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-slate-700" data-lang-key="nav_about">O nas</a>
                 <a href="#benefits" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-slate-700" data-lang-key="nav_benefits">Wartości</a>
                 <a href="#services" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-slate-700" data-lang-key="nav_services">Oferta</a>
-                <!-- Zmiana linku Kontakt na otwieranie modalu -->
                 <button onclick="openContactModal()" class="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-slate-700" data-lang-key="nav_contact">Kontakt</button>
                 <!-- Selektor Języka dla mobile -->
                 <select id="language-selector-mobile" onchange="setLanguage(this.value)" class="w-full mt-2 bg-slate-700 border border-slate-600 text-white text-sm rounded-lg focus:ring-[var(--color-accent)] focus:border-[var(--color-accent)] p-2 cursor-pointer">
@@ -161,25 +194,41 @@
 
     <main>
         <!-- Sekcja Hero - Wstęp (High-Tech Design) -->
-        <section class="hero-bg text-white pt-20 pb-20 sm:pt-32 sm:pb-32 lg:pt-40 lg:pb-40 rounded-b-none relative">
-             <!-- Subtelna linia wykresu w tle SVG -->
-            <svg class="chart-line hidden sm:block" viewBox="0 0 1000 400" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M 0 350 C 250 150, 500 300, 750 100 S 1000 250" fill="none" stroke="var(--color-secondary)" stroke-width="2" stroke-dasharray="10 5" />
-            </svg>
+        <section class="hero-bg text-white pt-20 pb-20 sm:pt-32 sm:pb-32 lg:pt-20 lg:pb-20 rounded-b-none relative">
+            <!-- Animowane Tło Siatki -->
+            <div class="hero-grid"></div>
+            
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-                <p class="text-lg text-[var(--color-accent)] font-semibold uppercase tracking-widest mb-4" data-lang-key="hero_tagline">
-                    Doradztwo Finansowe Nowej Generacji
-                </p>
-                <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold leading-tight mb-6 tracking-tight">
-                    <span data-lang-key="hero_title_p1">SKOMPLIKOWANE FINANSE,</span> <br class="hidden sm:block"> <span class="text-[var(--color-secondary)]" data-lang-key="hero_title_p2">PROSTE DECYZJE.</span>
-                </h1>
-                <p class="text-xl sm:text-2xl font-light mb-10 opacity-80 max-w-4xl mx-auto" data-lang-key="hero_subtitle">
-                    Przejmujemy formalności i negocjujemy warunki kredytu lub ubezpieczenia, abyś mógł skupić się na tym, co naprawdę ważne.
-                </p>
-                <!-- ZMIANA: Przycisk otwierający Modal -->
-                <button onclick="openContactModal()" class="inline-block btn-premium font-bold py-4 px-12 rounded-full shadow-2xl transform hover:scale-105 transition duration-300" data-lang-key="hero_button">
-                    ROZPOCZNIJ WSPÓŁPRACĘ &rarr;
-                </button>
+                
+                <div class="grid lg:grid-cols-2 gap-10 items-center">
+                    <!-- Lewa Kolumna - Tekst -->
+                    <div class="text-left">
+                        <p class="text-lg text-[var(--color-accent)] font-semibold uppercase tracking-widest mb-4" data-lang-key="hero_tagline">
+                            Doradztwo Finansowe Nowej Generacji
+                        </p>
+                        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight mb-6 tracking-tight">
+                            <span data-lang-key="hero_title_p1">SKOMPLIKOWANE FINANSE,</span> <br class="hidden sm:block"> <span class="text-[var(--color-secondary)]" data-lang-key="hero_title_p2">PROSTE DECYZJE.</span>
+                        </h1>
+                        <p class="text-xl sm:text-xl font-light mb-10 opacity-80" data-lang-key="hero_subtitle">
+                            Przejmujemy formalności i negocjujemy warunki kredytu lub ubezpieczenia, abyś mógł skupić się na tym, co naprawdę ważne.
+                        </p>
+                        <button onclick="openContactModal()" class="inline-block btn-premium font-bold py-3 px-8 rounded-full shadow-2xl transform hover:scale-105 transition duration-300" data-lang-key="hero_button">
+                            ROZPOCZNIJ WSPÓŁPRACĘ &rarr;
+                        </button>
+                    </div>
+                    <!-- Prawa Kolumna - Obraz (NOWOŚĆ) -->
+                    <div class="relative mt-8 lg:mt-0 flex justify-center lg:justify-end">
+                        <img 
+                            src="https://images.unsplash.com/photo-1542435503-9d0473a242c7?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+                            onerror="this.onerror=null;this.src='https://placehold.co/600x400/1e293b/a8a8a8?text=Wizualizacja+Sukcesu'"
+                            alt="Profesjonalny doradca finansowy analizujący dane"
+                            class="rounded-3xl shadow-2xl border-4 border-slate-700 max-w-full h-auto lg:max-w-md w-full"
+                        >
+                        <!-- Efekt wizualny na obrazie -->
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#0c0f1a] to-transparent opacity-30 rounded-3xl pointer-events-none"></div>
+                    </div>
+                </div>
+
             </div>
         </section>
 
@@ -187,8 +236,25 @@
         <section id="about" class="py-16 sm:py-24">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="grid lg:grid-cols-2 gap-12 items-center">
-                    <!-- Lewa strona - Opis -->
-                    <div>
+                    <!-- Lewa strona - Wizualizacja/Karta z cytatem (Przeniesiona na lewo na mobile) -->
+                    <div class="order-2 lg:order-1 relative">
+                         <!-- NOWY OBRAZ ZESPOŁU -->
+                        <img 
+                            src="https://images.unsplash.com/photo-1560523194-e0c1f2b606c4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+                            onerror="this.onerror=null;this.src='https://placehold.co/600x400/1e293b/a8a8a8?text=Nasz+Zespol'"
+                            alt="Portret uśmiechniętej doradczyni finansowej"
+                            class="rounded-3xl shadow-2xl border-4 border-slate-700 w-full h-auto object-cover max-h-96"
+                        >
+                        <!-- Półprzezroczysty cytat nałożony na obraz -->
+                         <div class="absolute bottom-4 left-4 right-4 bg-black bg-opacity-60 p-4 rounded-xl backdrop-blur-sm border border-slate-600">
+                             <blockquote class="text-md font-light italic text-gray-200" data-lang-key="about_quote">
+                                "Naszym największym sukcesem nie jest wynegocjowany kredyt, ale spokój klienta, który wie, że jego przyszłość jest bezpieczna."
+                            </blockquote>
+                         </div>
+                    </div>
+
+                    <!-- Prawa strona - Opis (Przeniesiona na prawo na mobile) -->
+                    <div class="order-1 lg:order-2">
                         <p class="text-md text-[var(--color-accent)] font-semibold uppercase tracking-widest mb-3" data-lang-key="about_tagline">
                             Nasza Filozofia
                         </p>
@@ -207,14 +273,6 @@
                             </button>
                         </div>
                     </div>
-                    <!-- Prawa strona - Wizualizacja/Karta z cytatem -->
-                    <div class="card-depth p-8 h-full flex flex-col justify-center">
-                        <div class="text-6xl text-[var(--color-accent)] mb-4">„</div>
-                        <blockquote class="text-2xl font-light italic text-gray-300" data-lang-key="about_quote">
-                            "Naszym największym sukcesem nie jest wynegocjowany kredyt, ale spokój klienta, który wie, że jego przyszłość jest bezpieczna."
-                        </blockquote>
-                        <p class="mt-4 text-lg font-bold text-white text-right">— Zespół F.B.S.</p>
-                    </div>
                 </div>
             </div>
         </section>
@@ -226,7 +284,7 @@
                     Nasza Przewaga Konkurencyjna
                 </p>
                 <h2 class="text-center text-4xl font-extrabold text-white sm:text-5xl mb-16">
-                    <span data-lang-key="benefits_title_p1">Dlaczego Jesteśmy</span> <span class="text-[var(--color-accent)]" data-lang-key="benefits_title_p2">Najlepszym Wyborem?</span>
+                    <span data-lang-key="benefits_title_p1">Dlaczego Jesteśmy</span> <span class="text-[var(--color-accent)]" data-lang-key="benefits_title_p2">Lepszym Wyborem?</span>
                 </h2>
 
                 <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -239,12 +297,12 @@
                         </p>
                     </div>
 
-                    <!-- Korzyść 2: Najlepsze Warunki -->
+                    <!-- Korzyść 2: Dostęp do Ofert Specjalnych -->
                     <div class="card-depth p-6 text-center">
-                        <div class="text-4xl text-[var(--color-secondary)] mb-3">📈</div>
-                        <h3 class="text-xl font-bold text-white mb-2" data-lang-key="benefit2_h">Ekstremalne Negocjacje</h3>
+                        <div class="text-4xl text-[var(--color-secondary)] mb-3">💰</div>
+                        <h3 class="text-xl font-bold text-white mb-2" data-lang-key="benefit2_h">Dostęp do Ofert Specjalnych</h3>
                         <p class="text-gray-400 text-sm" data-lang-key="benefit2_p">
-                            Wykorzystujemy siłę naszego portfela klientów do uzyskania niemożliwych warunków.
+                            Twoja zdolność kredytowa jest dla nas silną kartą. Wykorzystujemy ją, aby otworzyć drzwi do ekskluzywnych promocji, lepszych marż i wyższych rabatów, które są niedostępne w standardowych oddziałach. To realna oszczędność na ratach.
                         </p>
                     </div>
 
@@ -282,41 +340,51 @@
                 
                 <div class="grid md:grid-cols-3 gap-8">
                     <!-- Karta 1: Kredyty -->
-                    <div class="card-depth p-8 flex flex-col hover:border-blue-500">
-                        <div class="text-5xl text-[var(--color-secondary)] mb-4">🏠</div>
+                    <div class="card-depth p-8 flex flex-col hover:border-[var(--color-secondary)]">
+                        <!-- Ikona Kredytu (Portfel/Pieniądze) - Używamy zmiennej koloru secondary -->
+                        <div class="service-icon text-[var(--color-secondary)]">
+                            <svg class="w-full h-full" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2m-6 5h.01M10 15h4M12 18v.01"></path>
+                            </svg>
+                        </div>
                         <h3 class="text-2xl font-extrabold text-white mb-4" data-lang-key="credit_h">Kredyt Hipoteczny Premium</h3>
                         <p class="text-gray-400 mb-6 flex-grow" data-lang-key="credit_p1">
                             Twój dom jest zbyt ważny, by polegać na standardowych ofertach. Oferujemy dostęp do ofert specjalnych i **najniższych marż** wynegocjowanych wyłącznie dla naszych klientów.
                         </p>
-                        <!-- ZMIANA: Przycisk otwierający Modal -->
                         <button onclick="openContactModal()" class="w-full bg-[var(--color-secondary)] text-white font-semibold py-3 px-6 rounded-lg hover:bg-blue-700 transition duration-300 mt-4" data-lang-key="credit_link">
                             Uzyskaj Kredyt Marzeń &rarr;
                         </button>
                     </div>
 
                     <!-- Karta 2: Ubezpieczenia -->
-                    <div class="card-depth p-8 flex flex-col hover:border-green-500">
-                        <div class="text-5xl text-green-500 mb-4">🛡️</div>
+                    <div class="card-depth p-8 flex flex-col hover:border-[var(--color-insurance)]">
+                        <!-- Ikona Ubezpieczenia (Tarcza) - Używamy zmiennej koloru insurance -->
+                        <div class="service-icon text-[var(--color-insurance)]">
+                            <svg class="w-full h-full" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.01 12.01 0 002 12c0 2.514.805 4.887 2.222 6.84M12 4.041v.001M12 4.041A9.998 9.998 0 0122 12c0 2.223-.71 4.316-2 6.002M12 12v6"></path>
+                            </svg>
+                        </div>
                         <h3 class="text-2xl font-extrabold text-white mb-4" data-lang-key="insurance_h">Ochrona Kapitału</h3>
                         <p class="text-gray-400 mb-6 flex-grow" data-lang-key="insurance_p1">
                             Ubezpieczenie to nie koszt, to **inwestycja w stabilność**. Dobieramy polisy na życie, majątkowe i komunikacyjne, które realnie chronią Twój stan posiadania.
                         </p>
-                        <!-- ZMIANA: Przycisk otwierający Modal -->
-                        <button onclick="openContactModal()" class="w-full bg-green-600 text-white font-semibold py-3 px-6 rounded-lg hover:bg-green-700 transition duration-300 mt-4" data-lang-key="insurance_link">
+                        <button onclick="openContactModal()" class="w-full bg-[var(--color-insurance)] text-white font-semibold py-3 px-6 rounded-lg hover:bg-green-700 transition duration-300 mt-4" data-lang-key="insurance_link">
                             Zabezpiecz Przyszłość &rarr;
                         </button>
                     </div>
                     
                     <!-- Karta 3: Leasing -->
                     <div class="card-depth p-8 flex flex-col hover:border-[var(--color-accent)]">
-                        <!-- ZMIANA IKONY: na symbol leasingu/auta/floty -->
-                        <div class="text-5xl text-[var(--color-accent)] mb-4">🚗</div> 
-                        <!-- ZMIANA NAGŁÓWKA I TREŚCI NA LEASING -->
+                        <!-- Ikona Leasingu (Wykres/Rozwój) - Używamy zmiennej koloru accent -->
+                        <div class="service-icon text-[var(--color-accent)]">
+                            <svg class="w-full h-full" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 14v3m-4-6h8m-8 0a2 2 0 100 4h8a2 2 0 100-4h-8zm0 0H7a2 2 0 00-2 2v6a2 2 0 002 2h10a2 2 0 002-2v-6a2 2 0 00-2-2h-3"></path>
+                            </svg>
+                        </div>
                         <h3 class="text-2xl font-extrabold text-white mb-4" data-lang-key="leasing_h">Leasing i Finansowanie Floty</h3>
                         <p class="text-gray-400 mb-6 flex-grow" data-lang-key="leasing_p1">
                             Finansowanie dla Twojej firmy. Negocjujemy **najlepsze warunki leasingu** na samochody, maszyny i sprzęt IT. Szybka decyzja, minimum formalności i maksymalne korzyści podatkowe.
                         </p>
-                        <!-- ZMIANA LINKU NA LEASING -->
                         <button onclick="openContactModal()" class="w-full btn-premium font-bold py-3 px-6 rounded-lg transition duration-300 mt-4" data-lang-key="leasing_link">
                             Uzyskaj Najlepszą Ofertę &rarr;
                         </button>
@@ -417,7 +485,7 @@
         </div>
     </footer>
 
-    <!-- MODALNE OKNO WYBORU KONTAKTU (Dostosowane do ciemnego motywu) -->
+    <!-- MODALNE OKNO WYBORU KONTAKTU -->
     <div id="contactModal" class="modal" onclick="closeContactModal(event)">
         <div class="modal-content" onclick="event.stopPropagation()">
             <div class="flex justify-between items-center border-b border-slate-700 pb-4 mb-8">
@@ -429,7 +497,7 @@
 
             <div class="space-y-5">
                 <!-- Opcja 1: Zadzwoń do nas (Akcent Premium) -->
-                <a href="tel:+48517699181" onclick="closeContactModal()" class="modal-option flex items-center p-5 bg-[var(--color-accent)] text-white font-bold rounded-xl shadow-lg hover:shadow-2xl hover:border-white transition duration-300 transform hover:scale-[1.02] border-none !bg-[var(--color-accent)] !text-slate-900">
+                <a href="tel:+48517699181" onclick="closeContactModal()" class="modal-option premium flex items-center p-5 font-bold rounded-xl shadow-lg hover:shadow-2xl hover:border-white transition duration-300 transform hover:scale-[1.02]">
                     <span class="text-3xl mr-4">📞</span>
                     <div>
                         <span class="block text-xl" data-lang-key="modal_option1_h">Linia Telefoniczna Priorytetowa</span>
@@ -438,7 +506,7 @@
                 </a>
 
                 <!-- Opcja 2: Wypełnij formularz (my oddzwonimy) -->
-                <button onclick="scrollToContactForm()" class="w-full text-left modal-option flex items-center p-5 rounded-xl shadow-lg hover:shadow-xl hover:border-[var(--color-secondary)]">
+                <button onclick="scrollToContactForm()" class="w-full text-left modal-option flex items-center p-5 rounded-xl shadow-lg hover:shadow-xl hover:border-[var(--color-secondary)] border-2 border-transparent">
                     <span class="text-3xl mr-4 text-[var(--color-secondary)]">📝</span>
                     <div>
                         <span class="block text-xl" data-lang-key="modal_option2_h">Wypełnij Formularz</span>
@@ -447,7 +515,7 @@
                 </button>
 
                 <!-- Opcja 3: Grupa na Facebooku -->
-                <a href="https://www.facebook.com/share/g/1CT649ho6K/?mibextid=wwXIfr" target="_blank" onclick="closeContactModal()" class="modal-option flex items-center p-5 rounded-xl shadow-lg hover:shadow-xl hover:border-blue-500">
+                <a href="https://www.facebook.com/share/g/1CT649ho6K/?mibextid=wwXIfr" target="_blank" onclick="closeContactModal()" class="modal-option flex items-center p-5 rounded-xl shadow-lg hover:shadow-xl hover:border-blue-500 border-2 border-transparent">
                     <span class="text-3xl mr-4 text-blue-500">👥</span>
                     <div>
                         <span class="block text-xl" data-lang-key="modal_option3_h">Dołącz do Prywatnej Grupy FB</span>
@@ -481,7 +549,8 @@
                 benefits_tagline: 'Nasza Przewaga Konkurencyjna',
                 benefits_title_p1: 'Dlaczego Jesteśmy', benefits_title_p2: 'Lepszym Wyborem?',
                 benefit1_h: 'Optymalizacja Czasu', benefit1_p: 'Jedno spotkanie z nami zastępuje spotkania w 20 bankach. Maksymalna efektywność procesu.',
-                benefit2_h: 'Ekstremalne Negocjacje', benefit2_p: 'Wykorzystujemy siłę naszego portfela i mocnej bazy klientów do uzyskania niemożliwych warunków.',
+                benefit2_h: 'Dostęp do Ofert Specjalnych', 
+                benefit2_p: 'Twoja zdolność kredytowa jest dla nas silną kartą. Wykorzystujemy ją, aby otworzyć drzwi do ekskluzywnych promocji, lepszych marż i wyższych rabatów, które są niedostępne w standardowych oddziałach. To realna oszczędność na ratach.',
                 benefit3_h: 'Bezpieczeństwo Transakcji', benefit3_p: 'Pełna analiza prawna i finansowa. Jesteśmy tarczą chroniącą przed błędami.',
                 benefit4_h: 'Wsparcie Wielojęzyczne', benefit4_p: 'Obsługa w PL, UA, RU. Rozmawiamy w Twoim języku, bez barier i nieporozumień.',
                 // Usługi
@@ -492,7 +561,6 @@
                 credit_link: 'Uzyskaj Kredyt Marzeń →',
                 insurance_h: 'Ochrona Kapitału', insurance_p1: 'Ubezpieczenie to nie koszt, to **inwestycja w stabilność**. Dobieramy polisy na życie, majątkowe i komunikacyjne, które realnie chronią Twój stan posiadania.',
                 insurance_link: 'Zabezpiecz Przyszłość →',
-                // ZMIENIONE NA LEASING
                 leasing_h: 'Leasing i Finansowanie Floty',
                 leasing_p1: 'Finansowanie dla Twojej firmy. Negocjujemy **najlepsze warunki leasingu** na samochody, maszyny i sprzęt IT. Szybka decyzja, minimum formalności i maksymalne korzyści podatkowe.',
                 leasing_link: 'Uzyskaj Najlepszą Ofertę →',
@@ -539,7 +607,8 @@
                 benefits_tagline: 'Наша Конкурентна Перевага',
                 benefits_title_p1: 'Чому Ми', benefits_title_p2: 'Кращий Вибір?',
                 benefit1_h: 'Оптимізація Часу', benefit1_p: 'Одна зустріч з нами замінює зустрічі у 20 банках. Максимальна ефективність процесу.',
-                benefit2_h: 'Екстремальні Переговори', benefit2_p: 'Ми використовуємо силу нашого клієнтського портфеля для отримання неможливих умов.',
+                benefit2_h: 'Доступ до Спеціальних Пропозицій', 
+                benefit2_p: 'Ваша кредитоспроможність — це для нас сильна карта. Ми використовуємо її, щоб відкрити двері до ексклюзивних акцій, кращих марж і вищих знижок, які недоступні у стандартних відділеннях. Це реальна економія на платежах.',
                 benefit3_h: 'Безпека Угод', benefit3_p: 'Повний юридичний та фінансовий аналіз. Ми є щитом, що захищає від помилок.',
                 benefit4_h: 'Багатомовна Підтримка', benefit4_p: 'Обслуговування на PL, UA, RU. Ми спілкуємося Вашою мовою, без бар’єрів та непорозумінь.',
                 // Usługi
@@ -550,7 +619,6 @@
                 credit_link: 'Отримайте Кредит Мрії →',
                 insurance_h: 'Захист Капіталу', insurance_p1: 'Страхування – це не витрата, це **інвестиція у стабільність**. Ми підбираємо поліси на життя, майнове та комунікаційне страхування, які реально захищають Ваші активи.',
                 insurance_link: 'Забезпечте Майбутнє →',
-                // ZMIENIONE NA LEASING
                 leasing_h: 'Лізинг та Фінансування Парку',
                 leasing_p1: 'Фінансування для Вашої компанії. Ми узгоджуємо **найкращі умови лізингу** на автомобілі, машини та ІТ-обладнання. Швидке рішення, мінімум формальностей та максимальні податкові пільги.',
                 leasing_link: 'Отримайте Найкращу Пропозицію →',
@@ -597,20 +665,20 @@
                 benefits_tagline: 'Наше Конкурентное Преимущество',
                 benefits_title_p1: 'Почему Мы', benefits_title_p2: 'Лучший Выбор?',
                 benefit1_h: 'Оптимизация Времени', benefit1_p: 'Одна встреча с нами заменяет встречи в 20 банках. Максимальная эффективность процесса.',
-                benefit2_h: 'Экстремальные Переговоры', benefit2_p: 'Мы используем силу нашего клиентского портфеля для получения невозможных условий.',
+                benefit2_h: 'Доступ к Специальным Предложениям', 
+                benefit2_p: 'Ваша кредитоспособность — это для нас сильная карта. Мы используем ее, чтобы открыть двери к эксклюзивным акциям, лучшим маржам и более высоким скидкам, которые недоступны в стандартных отделениях. Это реальная экономия на платежах.',
                 benefit3_h: 'Безопасность Сделок', benefit3_p: 'Полный юридический и финансовый анализ. Мы являемся щитом, защищающим от ошибок.',
                 benefit4_h: 'Многоязычная Поддержка', benefit4_p: 'Обслуживание на PL, UA, RU. Мы общаемся на Вашем языке, без барьеров и недопониманий.',
                 // Usługi
                 services_tagline: 'Наша Специализация',
                 services_title: 'Три Столпа Вашего Успеха',
                 credit_h: 'Ипотечный Кредит Премиум',
-                credit_p1: 'Ваш дом слишком важен, чтобы полагаться на стандартные пропозиции. Мы предлагаем доступ к специальным пропозициям и **самым низким маржам**, согласованным исключительно для наших клиентов.',
+                credit_p1: 'Ваш дом слишком важен, чтобы полагаться на стандартные пропозиції. Мы пропонуємо доступ к специальным пропозициям и **самым низким маржам**, согласованным исключительно для наших клиентов.',
                 credit_link: 'Получите Кредит Мечты →',
                 insurance_h: 'Защита Капитала', insurance_p1: 'Страхование – это не расход, это **инвестиция в стабильность**. Мы подбираем полисы на жизнь, имущественное и автомобильное страхование, которые реально защищают Ваши активы.',
                 insurance_link: 'Обеспечьте Будущее →',
-                // ZMIENIONE NA LEASING
                 leasing_h: 'Лизинг и Финансирование Автопарка',
-                leasing_p1: 'Финансирование для Вашей компании. Мы согласовываем **наилучшие условия лизинга** на автомобили, машины и ИТ-оборудование. Быстрое решение, минимум формальностей и максимальные налоговые льготы.',
+                leasing_p1: 'Финансирование для Вашей компании. Мы согласовываем **наилучшие условия лизингу** на автомобили, машины и ИТ-оборудование. Быстрое решение, минимум формальностей и максимальные налоговые льготы.',
                 leasing_link: 'Получите Лучшее Предложение →',
                 // Kontakt
                 contact_tagline: 'Наш Процес',
@@ -639,15 +707,15 @@
 
         // --- Logika Modalu i Przewijania ---
 
-        // Otwiera modal
+        // Otwiera modal - Ustawia display na 'flex' aby był widoczny
         function openContactModal() {
             document.getElementById('contactModal').style.display = 'flex';
         }
 
         // Zamyka modal
         function closeContactModal(event) {
-            // Zamykanie tylko jeśli kliknięcie było na tle (id="contactModal")
-            if (event && event.target.id !== 'contactModal') {
+            // Zamykanie tylko jeśli kliknięcie było na tle (id="contactModal") lub przycisku X
+            if (event && event.target.id && event.target.id !== 'contactModal' && event.target.closest('#contactModal').id === 'contactModal') {
                 return;
             }
             document.getElementById('contactModal').style.display = 'none';
@@ -667,7 +735,8 @@
                 const formContainer = document.querySelector('#contact .card-depth');
                 if(formContainer) {
                     formContainer.style.transition = 'box-shadow 0.3s ease-in-out';
-                    formContainer.style.boxShadow = '0 0 40px rgba(255, 127, 80, 0.8)'; // Neonowy cień
+                    // Użycie kolorów akcentujących
+                    formContainer.style.boxShadow = '0 0 40px rgba(255, 127, 80, 0.8)'; 
                     setTimeout(() => {
                         formContainer.style.boxShadow = '0 10px 20px rgba(0, 0, 0, 0.4)'; // Powrót do normalnego cienia
                     }, 2000);
@@ -708,7 +777,7 @@
             }
         }
 
-        // --- Logika Formularza ---
+        // --- Logika Formularza (Symulacja) ---
 
         // Funkcja do obsługi formularza (symulacja wysyłki na backend)
         function handleFormSubmit(event) {
