@@ -718,6 +718,11 @@
             }
         }
 
+		        // Inicjalizacja EmailJS z Public Key
+        (function() {
+            emailjs.init("01Ct9XR5wgT_XodMX");
+        })();
+
         function handleFormSubmit(event) {
             event.preventDefault();
             const form = event.target;
@@ -729,7 +734,7 @@
             messageDiv.textContent = currentMessages.msg_sending || 'Wysyłanie...';
             messageDiv.classList.add('bg-gray-100', 'text-gray-700');
 
-            emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', form)
+            emailjs.sendForm('service_o6nqg23', 'template_xllw10f', form)
                 .then(() => {
                     messageDiv.textContent = currentMessages.msg_success || 'Sukces! Otrzymaliśmy Twoje zapytanie.';
                     messageDiv.classList.remove('bg-gray-100', 'text-gray-700');
