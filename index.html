@@ -23,467 +23,420 @@
             background-color: var(--color-secondary); /* Używamy głębokiego granatu */
             position: relative;
             overflow: hidden;
-            border-bottom: 5px solid var(--color-accent); /* Linia akcentu - złota */
         }
-        
-        /* Animacja siatki w tle Hero */
-        .hero-grid {
+        .hero-bg::before {
+            content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 0;
-            opacity: 0.15; /* Zwiększona widoczność na ciemnym tle */
-            pointer-events: none;
-            background-image: radial-gradient(#ffffff 1px, transparent 1px); /* Biała siatka na granacie */
-            background-size: 30px 30px;
-            animation: pulseGrid 15s infinite alternate;
+            background: linear-gradient(135deg, rgba(10, 25, 48, 0.8) 0%, rgba(10, 25, 48, 0.95) 100%);
+            z-index: 1;
         }
-
-        @keyframes pulseGrid {
-            from { background-size: 30px 30px; opacity: 0.15; }
-            to { background-size: 40px 40px; opacity: 0.1; }
+        .hero-content {
+            position: relative;
+            z-index: 2;
         }
-
-        /* Styl dla przycisków Premium (Złoty Akcent) */
-        .btn-premium {
-            background-color: var(--color-accent);
-            color: #ffffff; /* Biały tekst na złotym */
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            font-weight: 700;
-            box-shadow: 0 10px 20px -5px rgba(184, 134, 11, 0.5); /* Cień złotego przycisku */
-            border: none;
+        /* Akcent dla tytułów i tekstu */
+        .text-accent {
+            color: var(--color-accent);
         }
-        .btn-premium:hover {
-            background-color: #d4af37; /* Jaśniejsze złoto */
-            transform: translateY(-3px);
-            box-shadow: 0 15px 30px -8px rgba(184, 134, 11, 0.7);
-        }
-
-        /* Styl dla kart z efektem głębi */
+        /* Karta z głębokim cieniem */
         .card-depth {
-            background-color: #ffffff; /* Czysta Biel dla kart */
-            border-radius: 1rem;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1); /* Delikatny, luksusowy cień */
-            transition: all 0.3s ease-in-out;
-            border: 1px solid #e0e0e0; /* Delikatna ramka */
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
         }
         .card-depth:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
-            border-color: var(--color-accent); /* Złota ramka przy najechaniu */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
         }
-        
-        /* Styl dla ikony SVG w sekcji usług */
-        .service-icon {
-            width: 55px; 
-            height: 55px; 
-            margin-bottom: 1rem;
-            color: currentColor; 
+        /* Styl dla linków w sekcjach usług */
+        .service-link {
+            color: var(--color-secondary);
+            transition: color 0.3s ease, transform 0.3s ease;
         }
-
-        /* Nowoczesny pasek nawigacyjny */
-        .navbar-shadow {
-             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08); /* Delikatny cień na jasnym tle */
+        .service-link:hover {
+            color: var(--color-accent);
+            transform: translateX(5px);
         }
-
-        /* Pełne style dla Modalu Kontaktowego */
-        .modal {
-            display: none; 
+        /* Styl dla przycisku akcentu */
+        .btn-accent {
+            background-color: var(--color-accent);
+            color: white;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .btn-accent:hover {
+            background-color: #a3750a; /* Lekko ciemniejszy złoty */
+            transform: translateY(-2px);
+        }
+        /* Styl dla przycisku granatowego (kontrast) */
+        .btn-secondary {
+            background-color: var(--color-secondary);
+            color: white;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .btn-secondary:hover {
+            background-color: #081426; 
+            transform: translateY(-2px);
+        }
+        /* Styl dla formularza */
+        input[type="text"], input[type="email"], input[type="tel"], textarea {
+            border: 1px solid #e5e7eb; 
+            border-radius: 0.375rem;
+            padding: 0.75rem;
+            width: 100%;
+            transition: border-color 0.3s ease;
+        }
+        input:focus, textarea:focus {
+            border-color: var(--color-accent);
+            outline: none;
+            box-shadow: 0 0 0 1px var(--color-accent);
+        }
+        /* Styl dla ikon w sekcji korzyści */
+        .benefit-icon {
+            color: var(--color-accent);
+        }
+        /* Sticky Header */
+        .sticky-header {
             position: fixed;
-            z-index: 100; 
-            left: 0;
             top: 0;
             width: 100%;
+            z-index: 50;
+            background-color: var(--color-secondary);
+            transition: transform 0.3s ease;
+        }
+        /* Modal Style */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
             height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.7); /* Półprzezroczyste czarne tło */
+            background-color: rgba(0, 0, 0, 0.7);
+            display: none; /* Domyślnie ukryty */
             justify-content: center;
             align-items: center;
+            z-index: 100;
         }
-
         .modal-content {
-            background-color: #ffffff; /* Białe tło modala */
-            margin: 5% auto; 
-            padding: 30px;
-            border-radius: 1.5rem;
-            border: 2px solid var(--color-accent); /* Złota ramka */
-            width: 90%; 
-            max-width: 550px; 
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+            max-width: 500px;
+            width: 90%;
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
             animation: fadeIn 0.3s ease-out;
         }
-
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(-20px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
-        .modal-option {
-            background-color: #f0f0f0; /* Jasny szary dla opcji */
-            color: #1a1a1a;
-            border: 2px solid transparent;
-            cursor: pointer;
-            transition: all 0.2s ease-in-out;
-        }
-        .modal-option:hover {
-            background-color: #e5e5e5;
-        }
-        /* Style dla opcji premium w modal */
-        .modal-option.premium {
-            background-color: var(--color-accent) !important; /* Złote tło */
-            color: #ffffff !important; /* Biały tekst */
-            border-color: var(--color-accent);
-        }
-        .modal-option.premium:hover {
-            background-color: #d4af37 !important; /* Jaśniejsze złoto */
-        }
     </style>
 </head>
-<body class="antialiased">
+<body class="bg-[#f5f5f5]">
 
-    <header class="bg-white navbar-shadow sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-24">
-                <div class="flex-shrink-0">
-                    <a href="#" class="text-3xl font-extrabold text-black">
-                        <span class="text-4xl mr-1 text-[var(--color-accent)]">⚡</span> <span data-lang-key="company_name">FINANSE BEZ STRESU</span>
-                    </a>
-                </div>
-                <nav class="hidden md:flex space-x-10 items-center">
-                    <a href="#about" class="text-gray-700 hover:text-[var(--color-accent)] font-medium transition duration-150" data-lang-key="nav_about">O nas</a>
-                    <a href="#benefits" class="text-gray-700 hover:text-[var(--color-accent)] font-medium transition duration-150" data-lang-key="nav_benefits">Wartości</a>
-                    <a href="#services" class="text-gray-700 hover:text-[var(--color-accent)] font-medium transition duration-150" data-lang-key="nav_services">Oferta</a>
-                    <button onclick="openContactModal()" class="text-gray-700 hover:text-[var(--color-accent)] font-medium transition duration-150" data-lang-key="nav_contact">Kontakt</button>
-                    <select id="language-selector-desktop" onchange="setLanguage(this.value)" class="bg-gray-100 border-2 border-gray-300 text-gray-700 text-sm rounded-xl focus:ring-[var(--color-accent)] focus:border-[var(--color-accent)] p-2 pr-8 cursor-pointer shadow-inner">
-                        <option value="pl">🇵🇱 PL</option>
-                        <option value="uk">🇺🇦 UKR</option>
-                        <option value="ru">🇷🇺 RUS</option>
-                    </select>
-                </nav>
-                <button class="md:hidden p-2 rounded-md text-black hover:bg-gray-100 transition duration-150" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
-                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
-                </button>
-            </div>
-        </div>
-        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-xl border-t border-gray-200">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100" data-lang-key="nav_about">O nas</a>
-                <a href="#benefits" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100" data-lang-key="nav_benefits">Wartości</a>
-                <a href="#services" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100" data-lang-key="nav_services">Oferta</a>
-                <button onclick="openContactModal()" class="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100" data-lang-key="nav_contact">Kontakt</button>
-                <select id="language-selector-mobile" onchange="setLanguage(this.value)" class="w-full mt-2 bg-gray-100 border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-[var(--color-accent)] focus:border-[var(--color-accent)] p-2 cursor-pointer">
-                    <option value="pl">🇵🇱 PL</option>
-                    <option value="uk">🇺🇦 UKR</option>
-                    <option value="ru">🇷🇺 RUS</option>
+    <header class="sticky-header">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center text-white">
+            <h1 class="text-xl font-bold tracking-wider text-accent" data-lang-key="company_name">FINANSE BEZ STRESU</h1>
+            <nav class="hidden md:flex space-x-8 text-sm font-medium">
+                <a href="#about" class="hover:text-accent transition duration-200" data-lang-key="nav_about">O nas</a>
+                <a href="#benefits" class="hover:text-accent transition duration-200" data-lang-key="nav_benefits">Wartości</a>
+                <a href="#services" class="hover:text-accent transition duration-200" data-lang-key="nav_services">Oferta</a>
+                <a href="#contact" class="hover:text-accent transition duration-200" data-lang-key="nav_contact">Kontakt</a>
+                
+                <select id="language-selector-desktop" onchange="setLanguage(this.value)" class="bg-transparent border border-accent rounded px-2 py-0 text-white cursor-pointer">
+                    <option value="pl" selected>PL</option>
+                    <option value="uk">UA</option>
+                    <option value="ru">RU</option>
                 </select>
-            </div>
+            </nav>
+            <button onclick="openContactModal()" class="md:hidden btn-accent px-4 py-2 rounded-lg text-sm font-semibold">
+                Kontakt
+            </button>
         </div>
     </header>
 
-    <main>
-        <section class="hero-bg text-white pt-20 pb-20 sm:pt-32 sm:pb-32 lg:pt-20 lg:pb-20 rounded-b-none relative">
-            <div class="hero-grid"></div>
+    <div id="contactModal" class="modal-overlay" onclick="closeContactModal(event)">
+        <div class="modal-content text-center">
+            <button onclick="closeContactModal(event)" class="absolute top-4 right-4 text-gray-500 hover:text-gray-900 text-xl font-bold">&times;</button>
+            <h2 class="text-2xl font-bold mb-4 text-secondary" data-lang-key="modal_title">Wybierz Szybki Kontakt</h2>
             
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-                
-                <div class="grid lg:grid-cols-2 gap-10 items-center">
-                    <div class="text-left">
-                        <p class="text-lg text-[var(--color-accent)] font-semibold uppercase tracking-widest mb-4" data-lang-key="hero_tagline">
-                            Doradztwo Finansowe Nowej Generacji
-                        </p>
-                        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight mb-6 tracking-tight">
-                            <span data-lang-key="hero_title_p1">SKOMPLIKOWANE FINANSE,</span> <br class="hidden sm:block"> <span class="text-white" data-lang-key="hero_title_p2">PROSTE DECYZJE.</span>
-                        </h1>
-                        <p class="text-xl sm:text-xl font-light mb-10 opacity-90" data-lang-key="hero_subtitle">
-                            Przejmujemy formalności i negocjujemy warunki kredytu lub ubezpieczenia, abyś mógł skupić się na tym, co naprawdę ważne.
-                        </p>
-                        <button onclick="openContactModal()" class="inline-block btn-premium font-bold py-3 px-8 rounded-full shadow-2xl transform hover:scale-105 transition duration-300" data-lang-key="hero_button">
-                            ROZPOCZNIJ WSPÓŁPRACĘ &rarr;
-                        </button>
-                    </div>
-                    <div class="relative mt-8 lg:mt-0 flex justify-center lg:justify-end">
-                        <img 
-                            src="https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?auto=compress&cs=tinysrgb&w=800" 
-                            onerror="this.onerror=null;this.src='https://placehold.co/600x400/0a1930/a8a8a8?text=Wizualizacja+Sukcesu'"
-                            alt="Profesjonalny doradca finansowy analizujący dane"
-                            class="rounded-3xl shadow-2xl border-4 border-[var(--color-accent)] max-w-full h-auto lg:max-w-md w-full"
-                        >
-                        <div class="absolute inset-0 bg-gradient-to-t from-[#0a1930] to-transparent opacity-30 rounded-3xl pointer-events-none"></div>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <section id="about" class="py-16 sm:py-24">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="grid lg:grid-cols-2 gap-12 items-center">
-                    <div class="order-2 lg:order-1 relative">
-                        <img 
-                            src="https://images.pexels.com/photos/3184420/pexels-photo-3184420.jpeg?auto=compress&cs=tinysrgb&w=800" 
-                            onerror="this.onerror=null;this.src='https://placehold.co/600x400/0a1930/a8a8a8?text=Nasz+Zespol'"
-                            alt="Portret uśmiechniętej doradczyni finansowej"
-                            class="rounded-3xl shadow-2xl border-4 border-gray-300 w-full h-auto object-cover max-h-96"
-                        >
-                        <div class="absolute bottom-4 left-4 right-4 bg-black bg-opacity-70 p-4 rounded-xl backdrop-blur-sm border border-[var(--color-accent)]">
-                             <blockquote class="text-md font-light italic text-gray-200" data-lang-key="about_quote">
-                                "Naszym największym sukcesem nie jest wynegocjowany kredyt, ale spokój klienta, który wie, że jego przyszłość jest bezpieczna."
-                            </blockquote>
-                         </div>
-                    </div>
-
-                    <div class="order-1 lg:order-2">
-                        <p class="text-md text-[var(--color-accent)] font-semibold uppercase tracking-widest mb-3" data-lang-key="about_tagline">
-                            Nasza Filozofia
-                        </p>
-                        <h2 class="text-4xl font-extrabold text-[var(--color-secondary)] sm:text-5xl mb-6" data-lang-key="about_title">
-                            Jesteśmy inni, bo myślimy długoterminowo.
-                        </h2>
-                        <p class="mt-4 text-lg text-gray-600 leading-relaxed mb-6">
-                            <span data-lang-key="about_p1">W Finanse Bez Stresu nie jesteśmy tylko pośrednikami. Jesteśmy **strategami** Twojego majątku. Nasze doświadczenie pozwala nam przewidzieć pułapki rynkowe i zabezpieczyć Twoje interesy na lata. Nie interesuje nas szybka prowizja, ale Twoja pełna satysfakcja.</span>
-                        </p>
-                        <p class="mt-4 text-lg text-[var(--color-secondary)] leading-relaxed font-bold">
-                            <span data-lang-key="about_p2">Pełna transparentność, zero ukrytych kosztów. Tego oczekuj od doradcy premium.</span>
-                        </p>
-                        <div class="mt-8 flex space-x-4">
-                            <button onclick="openContactModal()" class="text-[var(--color-secondary)] bg-transparent border-2 border-[var(--color-secondary)] hover:bg-[var(--color-secondary)] hover:text-white px-6 py-3 rounded-full font-semibold transition duration-300">
-                                <span data-lang-key="about_button">Zacznij od Konsultacji</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="benefits" class="bg-white py-16 sm:py-24 border-t border-b border-gray-200">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <p class="text-md text-[var(--color-accent)] font-semibold uppercase tracking-widest text-center mb-3" data-lang-key="benefits_tagline">
-                    Nasza Przewaga Konkurencyjna
-                </p>
-                <h2 class="text-center text-4xl font-extrabold text-[var(--color-secondary)] sm:text-5xl mb-16">
-                    <span data-lang-key="benefits_title_p1">Dlaczego Jesteśmy</span> <span class="text-[var(--color-accent)]" data-lang-key="benefits_title_p2">Najlepszym Wyborem?</span>
-                </h2>
-
-                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <div class="card-depth p-6 text-center">
-                        <div class="text-4xl text-[var(--color-secondary)] mb-3">⏱️</div>
-                        <h3 class="text-xl font-bold text-black mb-2" data-lang-key="benefit1_h">Optymalizacja Czasu</h3>
-                        <p class="text-gray-500 text-sm" data-lang-key="benefit1_p">
-                            Jedno spotkanie z nami zastępuje spotkania w 20 bankach. Maksymalna efektywność procesu.
-                        </p>
-                    </div>
-
-                    <div class="card-depth p-6 text-center">
-                        <div class="text-4xl text-[var(--color-accent)] mb-3">💰</div>
-                        <h3 class="text-xl font-bold text-black mb-2" data-lang-key="benefit2_h">Dostęp do Ofert Specjalnych</h3>
-                        <p class="text-gray-500 text-sm" data-lang-key="benefit2_p">
-                            Twoja zdolność kredytowa jest dla nas silną kartą. Wykorzystujemy ją, aby otworzyć drzwi do ekskluzywnych promocji, lepszych marż i wyższych rabatów, które są niedostępne w standardowych oddziałach. To realna oszczędność na ratach.
-                        </p>
-                    </div>
-
-                    <div class="card-depth p-6 text-center">
-                        <div class="text-4xl text-[var(--color-secondary)] mb-3">🔒</div>
-                        <h3 class="text-xl font-bold text-black mb-2" data-lang-key="benefit3_h">Bezpieczeństwo Transakcji</h3>
-                        <p class="text-gray-500 text-sm" data-lang-key="benefit3_p">
-                            Pełna analiza prawna i finansowa. Jesteśmy tarczą chroniącą przed błędami.
-                        </p>
-                    </div>
-                    
-                    <div class="card-depth p-6 text-center">
-                        <div class="text-4xl text-[var(--color-accent)] mb-3">🌐</div>
-                        <h3 class="text-xl font-bold text-black mb-2" data-lang-key="benefit4_h">Wsparcie Wielojęzyczne</h3>
-                        <p class="text-gray-500 text-sm" data-lang-key="benefit4_p">
-                            Obsługa w PL, UA, RU. Rozmawiamy w Twoim języku, bez barier i nieporozumień.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-
-        <section id="services" class="py-16 sm:py-24 bg-gray-50">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <p class="text-md text-[var(--color-accent)] font-semibold uppercase tracking-widest text-center mb-3" data-lang-key="services_tagline">
-                    Nasza Specjalizacja
-                </p>
-                <h2 class="text-center text-4xl font-extrabold text-[var(--color-secondary)] sm:text-5xl mb-16">
-                    <span data-lang-key="services_title">Trzy Filary Twojego Sukcesu</span>
-                </h2>
-                
-                <div class="grid md:grid-cols-3 gap-8">
-                    <div class="card-depth p-8 flex flex-col hover:border-[var(--color-secondary)]">
-                        <div class="service-icon text-[var(--color-secondary)]">
-                            <svg class="w-full h-full" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2m-6 5h.01M10 15h4M12 18v.01"></path>
-                            </svg>
-                        </div>
-                        <h3 class="text-2xl font-extrabold text-black mb-4" data-lang-key="credit_h">Kompleksowe Finansowanie i Kredyty</h3>
-                        <p class="text-gray-600 mb-6 flex-grow" data-lang-key="credit_p1">
-                            Obsługujemy wszystkie rodzaje kredytów: **hipoteczne, konsumpcyjne, firmowe**. Niezależnie od celu, dostarczamy najniższe marże i minimum formalności.
-                        </p>
-                        <button onclick="openContactModal()" class="w-full bg-[var(--color-secondary)] text-white font-semibold py-3 px-6 rounded-lg hover:bg-[#081325] transition duration-300 mt-4" data-lang-key="credit_link">
-                            Uzyskaj Kredyt Marzeń &rarr;
-                        </button>
-                    </div>
-
-                    <div class="card-depth p-8 flex flex-col hover:border-[var(--color-insurance)]">
-                        <div class="service-icon text-[var(--color-insurance)]">
-                            <svg class="w-full h-full" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.01 12.01 0 002 12c0 2.514.805 4.887 2.222 6.84M12 4.041v.001M12 4.041A9.998 9.998 0 0122 12c0 2.223-.71 4.316-2 6.002M12 12v6"></path>
-                            </svg>
-                        </div>
-                        <h3 class="text-2xl font-extrabold text-black mb-4" data-lang-key="insurance_h">Ochrona Kapitału</h3>
-                        <p class="text-gray-600 mb-6 flex-grow" data-lang-key="insurance_p1">
-                            Ubezpieczenie to nie koszt, to **inwestycja w stabilność**. Dobieramy polisy na życie, majątkowe i komunikacyjne, które realnie chronią Twój stan posiadania.
-                        </p>
-                        <button onclick="openContactModal()" class="w-full bg-[var(--color-insurance)] text-white font-semibold py-3 px-6 rounded-lg hover:bg-[#156e3b] transition duration-300 mt-4" data-lang-key="insurance_link">
-                            Zabezpiecz Przyszłość &rarr;
-                        </button>
-                    </div>
-                    
-                    <div class="card-depth p-8 flex flex-col hover:border-[var(--color-accent)]">
-                        <div class="service-icon text-[var(--color-accent)]">
-                            <svg class="w-full h-full" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 14v3m-4-6h8m-8 0a2 2 0 100 4h8a2 2 0 100-4h-8zm0 0H7a2 2 0 00-2 2v6a2 2 0 002 2h10a2 2 0 002-2v-6a2 2 0 00-2-2h-3"></path>
-                            </svg>
-                        </div>
-                        <h3 class="text-2xl font-extrabold text-black mb-4" data-lang-key="leasing_h">Leasing i Finansowanie Floty</h3>
-                        <p class="text-gray-600 mb-6 flex-grow" data-lang-key="leasing_p1">
-                            Finansowanie dla Twojej firmy. Negocjujemy **najlepsze warunki leasingu** na samochody, maszyny i sprzęt IT. Szybka decyzja, minimum formalności i maksymalne korzyści podatkowe.
-                        </p>
-                        <button onclick="openContactModal()" class="w-full btn-premium font-bold py-3 px-6 rounded-lg transition duration-300 mt-4" data-lang-key="leasing_link">
-                            Uzyskaj Najlepszą Ofertę &rarr;
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <section id="contact" class="py-16 sm:py-24 bg-[var(--color-secondary)] border-t border-gray-700">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <p class="text-md text-[var(--color-accent)] font-semibold uppercase tracking-widest text-center mb-3" data-lang-key="contact_tagline">
-                    Nasz Proces
-                </p>
-                <h2 class="text-center text-4xl font-extrabold text-white sm:text-5xl mb-16">
-                    <span data-lang-key="contact_title">Zacznij Już Dziś</span>
-                </h2>
-                
-                <div class="lg:flex lg:space-x-12">
-                    
-                    <div class="lg:w-2/3 card-depth p-8 sm:p-12">
-                        <h3 class="text-3xl font-bold text-[var(--color-secondary)] mb-8 border-b border-gray-200 pb-4" data-lang-key="form_h">Wypełnij formularz – Ekspresowo Oddzwonimy.</h3>
-                        <form id="contactForm" onsubmit="handleFormSubmit(event)">
-                            <div class="space-y-6">
-                                <div>
-                                    <label for="name" class="block text-sm font-medium text-gray-700 mb-1"><span data-lang-key="form_name">Imię i Nazwisko</span></label>
-                                    <input type="text" id="name" name="name" required class="w-full p-3 bg-gray-100 border border-gray-300 text-black rounded-xl focus:ring-[var(--color-accent)] focus:border-[var(--color-accent)] transition duration-150 shadow-inner">
-                                </div>
-                                <div>
-                                    <label for="email" class="block text-sm font-medium text-gray-700 mb-1"><span data-lang-key="form_email">E-mail</span></label>
-                                    <input type="email" id="email" name="email" required class="w-full p-3 bg-gray-100 border border-gray-300 text-black rounded-xl focus:ring-[var(--color-accent)] focus:border-[var(--color-accent)] transition duration-150 shadow-inner">
-                                </div>
-                                <div>
-                                    <label for="phone" class="block text-sm font-medium text-gray-700 mb-1"><span data-lang-key="form_phone">Telefon (Konieczny do oddzwonienia)</span></label>
-                                    <input type="tel" id="phone" name="phone" required class="w-full p-3 bg-gray-100 border border-gray-300 text-black rounded-xl focus:ring-[var(--color-accent)] focus:border-[var(--color-accent)] transition duration-150 shadow-inner" placeholder="+48 517 699 181">
-                                </div>
-                                <div>
-                                    <label for="message" class="block text-sm font-medium text-gray-700 mb-1"><span data-lang-key="form_message">Wiadomość (opisz krótko swój cel finansowy)</span></label>
-                                    <textarea id="message" name="message" rows="5" required class="w-full p-3 bg-gray-100 border border-gray-300 text-black rounded-xl focus:ring-[var(--color-accent)] focus:border-[var(--color-accent)] transition duration-150 shadow-inner"></textarea>
-                                </div>
-                                <div id="formMessage" class="hidden p-4 rounded-xl text-center font-bold"></div>
-                                <button type="submit" class="w-full btn-premium font-bold py-4 rounded-xl shadow-xl transform hover:scale-[1.01]" data-lang-key="form_button">
-                                    WYŚLIJ ZAPYTANIE &rarr;
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-
-                    <div class="lg:w-1/3 mt-12 lg:mt-0 space-y-8 p-8 bg-[#0a1930] text-white rounded-3xl shadow-xl border border-[var(--color-accent)] flex flex-col justify-between">
-                        <div>
-                            <h3 class="text-2xl font-bold border-b border-gray-700 pb-4 mb-6 text-[var(--color-accent)]" data-lang-key="contact_details_h">Skontaktuj się z Doradcą</h3>
-                            <div class="flex items-start mb-6">
-                                <span class="mr-3 text-3xl text-white">📧</span>
-                                <div>
-                                    <p class="font-semibold" data-lang-key="contact_email_h">E-mail Biura (Odp. do 4h)</p>
-                                    <a href="mailto:biuro@finansebezstresu.pl" class="text-gray-300 hover:text-white hover:underline transition duration-150">biuro@finansebezstresu.pl</a>
-                                </div>
-                            </div>
-                            <div class="flex items-start mb-6">
-                                <span class="mr-3 text-3xl text-[var(--color-accent)]">📞</span>
-                                <div>
-                                    <p class="font-semibold" data-lang-key="contact_phone_h">Telefon (Linia Priorytetowa)</p>
-                                    <a href="tel:+48517699181" class="text-xl text-[var(--color-accent)] hover:text-white hover:underline transition duration-150 font-mono">+48 517 699 181</a>
-                                </div>
-                            </div>
-                            <div class="flex items-start">
-                                <span class="mr-3 text-3xl text-white">🚗</span>
-                                <div>
-                                    <p class="font-semibold" data-lang-key="contact_address_h">Mobilne Biuro Doradcze</p>
-                                    <p data-lang-key="contact_mobile_p1">Spotkanie u klienta, w kawiarni lub online.</p>
-                                    <p data-lang-key="contact_mobile_p2">Pełna elastyczność w doborze miejsca.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="pt-8 border-t border-gray-700 flex justify-center space-x-6">
-                            <a href="https://www.facebook.com/share/g/1CT649ho6K/?mibextid=wwXIfr" target="_blank" class="text-white hover:text-[var(--color-accent)] transition duration-150 transform hover:scale-110">
-                                <svg class="w-9 h-9" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.043c-5.467 0-9.927 4.415-9.927 9.873 0 5.093 3.684 9.351 8.533 9.743v-7.018h-2.316v-2.725h2.316v-2.007c0-2.289 1.366-3.567 3.473-3.567 1.002 0 1.968.178 1.968.178v2.17h-1.111c-1.1 0-1.444.686-1.444 1.401v1.825h2.553l-.409 2.725h-2.144v7.018c4.849-.392 8.533-4.65 8.533-9.743 0-5.458-4.46-9.873-9.927-9.873z"/></svg>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <footer class="bg-white text-gray-500 py-8 border-t border-gray-200">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <p data-lang-key="footer_copy">&copy; 2025 Finanse Bez Stresu - Grupa Doradztwa. Wszelkie prawa zastrzeżone.</p>
-            <p class="mt-2 text-sm">
-                <a href="#" class="hover:text-[var(--color-accent)] transition duration-150" data-lang-key="footer_privacy">Polityka Prywatności</a> |
-                <a href="#" class="hover:text-[var(--color-accent)] transition duration-150" data-lang-key="footer_terms">Regulamin Usług</a>
-            </p>
-        </div>
-    </footer>
-
-    <div id="contactModal" class="modal" onclick="closeContactModal(event)">
-        <div class="modal-content" onclick="event.stopPropagation()">
-            <div class="flex justify-between items-center border-b border-gray-300 pb-4 mb-8">
-                <h3 class="text-3xl font-bold text-black" data-lang-key="modal_title">Wybierz Szybki Kontakt</h3>
-                <button onclick="closeContactModal()" class="text-gray-500 hover:text-black transition duration-150">
-                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                </button>
+            <div class="p-4 border border-accent bg-yellow-50/50 rounded-lg mb-4 text-left">
+                <h3 class="text-lg font-semibold text-accent" data-lang-key="modal_option1_h">Linia Telefoniczna Priorytetowa</h3>
+                <p class="text-gray-700" data-lang-key="modal_option1_p">+48 517 699 181 (Zadzwoń teraz – Najszybciej)</p>
+                <a href="tel:+48517699181" class="block mt-2 text-white btn-accent px-4 py-2 rounded-lg text-center font-semibold">ZADZWOŃ TERAZ</a>
             </div>
 
-            <div class="space-y-5">
-                <a href="tel:+48517699181" onclick="closeContactModal()" class="modal-option premium flex items-center p-5 font-bold rounded-xl shadow-lg hover:shadow-2xl hover:border-white transition duration-300 transform hover:scale-[1.02]">
-                    <span class="text-3xl mr-4">📞</span>
-                    <div>
-                        <span class="block text-xl" data-lang-key="modal_option1_h">Linia Telefoniczna Priorytetowa</span>
-                        <span class="block text-sm font-semibold text-gray-100" data-lang-key="modal_option1_p">+48 517 699 181 (Zadzwoń teraz – Najszybciej)</span>
-                    </div>
-                </a>
+            <div class="p-4 border border-gray-200 rounded-lg mb-4 text-left cursor-pointer hover:bg-gray-50" onclick="scrollToContactForm()">
+                <h3 class="text-lg font-semibold text-secondary" data-lang-key="modal_option2_h">Wypełnij Formularz</h3>
+                <p class="text-gray-600" data-lang-key="modal_option2_p">Oddzwonimy w ciągu godziny (W Godzinach Pracy)</p>
+                <button onclick="scrollToContactForm()" class="block w-full mt-2 text-white btn-secondary px-4 py-2 rounded-lg text-center font-semibold">PRZEJDŹ DO FORMULARZA</button>
+            </div>
 
-                <button onclick="scrollToContactForm()" class="w-full text-left modal-option flex items-center p-5 rounded-xl shadow-lg hover:shadow-xl hover:border-[var(--color-secondary)] border-2 border-transparent">
-                    <span class="text-3xl mr-4 text-[var(--color-secondary)]">📝</span>
-                    <div>
-                        <span class="block text-xl" data-lang-key="modal_option2_h">Wypełnij Formularz</span>
-                        <span class="block text-sm font-light text-gray-500" data-lang-key="modal_option2_p">Oddzwonimy w ciągu godziny (W Godzinach Pracy)</span>
-                    </div>
-                </button>
-
-                <a href="https://www.facebook.com/share/g/1CT649ho6K/?mibextid=wwXIfr" target="_blank" onclick="closeContactModal()" class="modal-option flex items-center p-5 rounded-xl shadow-lg hover:shadow-xl hover:border-blue-700 border-2 border-transparent">
-                    <span class="text-3xl mr-4 text-blue-700">👥</span>
-                    <div>
-                        <span class="block text-xl" data-lang-key="modal_option3_h">Dołącz do Prywatnej Grupy FB</span>
-                        <span class="block text-sm font-light text-gray-500" data-lang-key="modal_option3_p">Społeczność, bieżące pytania i porady</span>
-                    </div>
-                </a>
+            <div class="p-4 border border-gray-200 rounded-lg text-left">
+                <h3 class="text-lg font-semibold text-secondary" data-lang-key="modal_option3_h">Dołącz do Prywatnej Grupy FB</h3>
+                <p class="text-gray-600" data-lang-key="modal_option3_p">Społeczność, bieżące pytania i porady</p>
+                <a href="https://www.facebook.com/groups/finansebezstresu" target="_blank" class="block mt-2 text-white bg-[#1877F2] px-4 py-2 rounded-lg text-center font-semibold">DOŁĄCZ</a>
+            </div>
+            
+            <div class="mt-6">
+                <label class="text-sm font-medium text-gray-500 mr-2">Język / Мова:</label>
+                <select id="language-selector-modal" onchange="setLanguage(this.value); closeContactModal(event);" class="border border-gray-300 rounded px-3 py-1 text-sm cursor-pointer">
+                    <option value="pl" selected>Polski (PL)</option>
+                    <option value="uk">Українська (UA)</option>
+                    <option value="ru">Русский (RU)</option>
+                </select>
             </div>
         </div>
     </div>
+
+
+    <main>
+        <section class="hero-bg pt-24 pb-20 text-white">
+            <div class="hero-content container mx-auto px-4 sm:px-6 lg:px-8">
+                <p class="text-accent text-lg font-semibold mb-3 tracking-widest uppercase" data-lang-key="hero_tagline">Doradztwo Finansowe Nowej Generacji</p>
+                <h2 class="text-5xl md:text-7xl font-extrabold leading-tight mb-6">
+                    <span data-lang-key="hero_title_p1">SKOMPLIKOWANE FINANSE,</span><br>
+                    <span class="text-accent" data-lang-key="hero_title_p2">PROSTE DECYZJE.</span>
+                </h2>
+                <p class="text-gray-300 text-xl max-w-3xl mb-10" data-lang-key="hero_subtitle">Przejmujemy formalności i negocjujemy warunki kredytu lub ubezpieczenia, abyś mógł skupić się na tym, co naprawdę ważne.</p>
+                
+                <button onclick="openContactModal()" class="btn-accent px-10 py-4 text-lg font-bold rounded-xl shadow-lg hover:shadow-2xl transition duration-300" data-lang-key="hero_button">
+                    ROZPOCZNIJ WSPÓŁPRACĘ →
+                </button>
+                
+                <p class="mt-4 text-sm text-gray-400" data-lang-key="hero_note">*Gwarantujemy pełną poufność i profesjonalne wsparcie na każdym etapie.</p>
+            </div>
+        </section>
+
+        <section id="about" class="py-20 bg-white">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    
+                    <div>
+                        <p class="text-accent font-semibold uppercase tracking-wider mb-2" data-lang-key="about_tagline">Nasza Filozofia</p>
+                        <h2 class="text-4xl font-bold mb-6 text-secondary" data-lang-key="about_title">Jesteśmy inni, bo myślimy długoterminowo.</h2>
+                        
+                        <p class="text-gray-700 text-lg mb-4 leading-relaxed" data-lang-key="about_p1">W Finanse Bez Stresu nie jesteśmy tylko pośrednikami. Jesteśmy **strategami** Twojego majątku. Nasze doświadczenie pozwala nam przewidzieć pułapki rynkowe i zabezpieczyć Twoje interesy na lata. Nie interesuje nas szybka prowizja, ale Twoja pełna satysfakcja.</p>
+                        
+                        <p class="text-gray-700 text-lg mb-8 leading-relaxed" data-lang-key="about_p2">Pełna transparentność, zero ukrytych kosztów. Tego oczekuj od doradcy premium.</p>
+                        
+                        <button onclick="openContactModal()" class="btn-secondary px-8 py-3 font-semibold rounded-lg hover:bg-accent transition duration-300" data-lang-key="about_button">
+                            Zacznij od Konsultacji
+                        </button>
+                    </div>
+
+                    <div class="bg-gray-50 border-l-4 border-accent p-8 rounded-lg shadow-lg">
+                        <div class="text-5xl text-accent mb-4 font-serif">“</div>
+                        <p class="text-2xl italic text-gray-800 leading-snug" data-lang-key="about_quote">"Naszym największym sukcesem nie jest wynegocjowany kredyt, ale spokój klienta, który wie, że jego przyszłość jest bezpieczna."</p>
+                        <p class="mt-4 text-lg font-semibold text-gray-600">- Zespół F.B.S.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="benefits" class="py-20 bg-gray-100">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <p class="text-accent font-semibold uppercase tracking-wider mb-2" data-lang-key="benefits_tagline">Nasza Przewaga Konkurencyjna</p>
+                <h2 class="text-4xl font-bold mb-12 text-secondary">
+                    <span data-lang-key="benefits_title_p1">Dlaczego Jesteśmy</span> 
+                    <span class="text-accent" data-lang-key="benefits_title_p2">Najlepszym Wyborem?</span>
+                </h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    
+                    <div class="bg-white p-6 rounded-xl card-depth text-left">
+                        <div class="benefit-icon text-4xl mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-secondary" data-lang-key="benefit1_h">Optymalizacja Czasu</h3>
+                        <p class="text-gray-600" data-lang-key="benefit1_p">Jedno spotkanie z nami zastępuje spotkania w 20 bankach. Maksymalna efektywność procesu.</p>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-xl card-depth text-left">
+                        <div class="benefit-icon text-4xl mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L3 12l5.714-2.143L11 3z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-secondary" data-lang-key="benefit2_h">Dostęp do Ofert Specjalnych</h3>
+                        <p class="text-gray-600" data-lang-key="benefit2_p">Twoja zdolność kredytowa jest dla nas silną kartą. Wykorzystujemy ją, aby otworzyć drzwi do ekskluzywnych promocji, lepszych marż i wyższych rabatów, które są niedostępne w standardowych oddziałach. To realna oszczędność na ratach.</p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl card-depth text-left">
+                        <div class="benefit-icon text-4xl mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-5.618 3.047A12.003 12.003 0 0012 21c4.546 0 8.487-2.099 10.385-5.047A12.003 12.003 0 0012 3a12.003 12.003 0 00-5.618 3.047z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-secondary" data-lang-key="benefit3_h">Bezpieczeństwo Transakcji</h3>
+                        <p class="text-gray-600" data-lang-key="benefit3_p">Pełna analiza prawna i finansowa. Jesteśmy tarczą chroniącą przed błędami.</p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl card-depth text-left">
+                        <div class="benefit-icon text-4xl mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.52 16.52c-.75.75-1.5 1.5-2.25 2.25M17.48 16.52a18.022 18.022 0 00-3.52 1.98M12 21c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8zm-2-9h4m-2 4v-4" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-secondary" data-lang-key="benefit4_h">Wsparcie Wielojęzyczne</h3>
+                        <p class="text-gray-600" data-lang-key="benefit4_p">Obsługa w PL, UA, RU. Rozmawiamy w Twoim języku, bez barier i nieporozumień.</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="py-20 bg-white">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <p class="text-accent font-semibold uppercase tracking-wider text-center mb-2" data-lang-key="services_tagline">Nasza Specjalizacja</p>
+                <h2 class="text-4xl font-bold mb-12 text-secondary text-center" data-lang-key="services_title">Trzy Filary Twojego Sukcesu</h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+                    <div class="bg-gray-100 p-8 rounded-xl card-depth text-left border-t-4 border-secondary">
+                        <div class="text-secondary text-5xl mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0l-2 2-2-2m2 2l2-2m-8 4v2m0-6V7m0 4h.01M12 2v19M4 11h16a2 2 0 002-2V5a2 2 0 00-2-2H4a2 2 0 00-2 2v4a2 2 0 002 2z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-3 text-secondary" data-lang-key="credit_h">Kompleksowe Finansowanie i Kredyty</h3>
+                        <p class="text-gray-700 mb-6" data-lang-key="credit_p1">Obsługujemy wszystkie rodzaje kredytów: **hipoteczne, konsumpcyjne, firmowe**. Niezależnie od celu, dostarczamy najniższe marże i minimum formalności.</p>
+                        <a href="#contact" class="service-link font-semibold flex items-center" data-lang-key="credit_link">
+                            Uzyskaj Kredyt Marzeń
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                            </svg>
+                        </a>
+                    </div>
+                    
+                    <div class="bg-gray-100 p-8 rounded-xl card-depth text-left border-t-4 border-insurance">
+                        <div class="text-insurance text-5xl mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-5.618 3.047A12.003 12.003 0 0012 21c4.546 0 8.487-2.099 10.385-5.047A12.003 12.003 0 0012 3a12.003 12.003 0 00-5.618 3.047z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-3 text-secondary" data-lang-key="insurance_h">Ochrona Kapitału</h3>
+                        <p class="text-gray-700 mb-6" data-lang-key="insurance_p1">Ubezpieczenie to nie koszt, to **inwestycja w stabilność**. Dobieramy polisy na życie, majątkowe i komunikacyjne, które realnie chronią Twój stan posiadania.</p>
+                        <a href="#contact" class="service-link font-semibold flex items-center" style="color: var(--color-insurance);" data-lang-key="insurance_link">
+                            Zabezpiecz Przyszłość
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                            </svg>
+                        </a>
+                    </div>
+                    
+                    <div class="bg-gray-100 p-8 rounded-xl card-depth text-left border-t-4 border-accent">
+                        <div class="text-accent text-5xl mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m-2 4h10m0 0l-2 2m2-2l-2-2m-6-4h4m-4 0V7m4 4v2" />
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-3 text-secondary" data-lang-key="leasing_h">Leasing i Finansowanie Floty</h3>
+                        <p class="text-gray-700 mb-6" data-lang-key="leasing_p1">Finansowanie dla Twojej firmy. Negocjujemy **najlepsze warunki leasingu** na samochody, maszyny i sprzęt IT. Szybka decyzja, minimum formalności i maksymalne korzyści podatkowe.</p>
+                        <a href="#contact" class="service-link font-semibold flex items-center" data-lang-key="leasing_link">
+                            Uzyskaj Najlepszą Ofertę
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                            </svg>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="py-20 bg-[#f5f5f5]">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <p class="text-accent font-semibold uppercase tracking-wider text-center mb-2" data-lang-key="contact_tagline">Nasz Proces</p>
+                <h2 class="text-4xl font-bold mb-12 text-secondary text-center" data-lang-key="contact_title">Zacznij Już Dziś</h2>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                    
+                    <div class="bg-white p-8 md:p-12 rounded-xl card-depth">
+                        <h3 class="text-2xl font-bold mb-6 text-secondary" data-lang-key="form_h">Wypełnij formularz – Ekspresowo Oddzwonimy.</h3>
+                        
+                        <div id="formMessage" class="hidden p-4 rounded-lg mb-6 text-center font-bold"></div>
+
+                        <form action="send_email.php" method="POST">
+                            
+                            <div class="mb-4">
+                                <label for="name" class="block text-gray-700 font-medium mb-2" data-lang-key="form_name">Imię i Nazwisko</label>
+                                <input type="text" id="name" name="name" required class="w-full">
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="email" class="block text-gray-700 font-medium mb-2" data-lang-key="form_email">E-mail</label>
+                                <input type="email" id="email" name="email" required class="w-full">
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="phone" class="block text-gray-700 font-medium mb-2" data-lang-key="form_phone">Telefon (Konieczny do oddzwonienia)</label>
+                                <input type="tel" id="phone" name="phone" required class="w-full" placeholder="+48 517 699 181">
+                            </div>
+
+                            <div class="mb-6">
+                                <label for="message" class="block text-gray-700 font-medium mb-2" data-lang-key="form_message">Wiadomość (opisz krótko swój cel finansowy)</label>
+                                <textarea id="message" name="message" rows="4" required class="w-full"></textarea>
+                            </div>
+
+                            <button type="submit" class="w-full btn-accent px-8 py-3 text-lg font-bold rounded-lg shadow-md hover:shadow-xl transition duration-300" data-lang-key="form_button">
+                                WYŚLIJ ZAPYTANIE →
+                            </button>
+
+                        </form>
+                    </div>
+
+                    <div class="space-y-8">
+                        
+                        <div class="bg-white p-8 rounded-xl card-depth">
+                            <h3 class="text-2xl font-bold mb-4 text-secondary border-b pb-2" data-lang-key="contact_details_h">Skontaktuj się z Doradcą</h3>
+                            
+                            <div class="space-y-4">
+                                <div>
+                                    <p class="text-gray-500 font-medium mb-1" data-lang-key="contact_email_h">E-mail Biura (Odp. do 4h)</p>
+                                    <a href="mailto:biuro@finansebezstresu.pl" class="text-lg font-semibold text-secondary hover:text-accent transition duration-200">biuro@finansebezstresu.pl</a>
+                                </div>
+                                <div>
+                                    <p class="text-gray-500 font-medium mb-1" data-lang-key="contact_phone_h">Telefon (Linia Priorytetowa)</p>
+                                    <a href="tel:+48517699181" class="text-2xl font-extrabold text-accent hover:text-secondary transition duration-200">+48 517 699 181</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-8 rounded-xl card-depth">
+                            <h3 class="text-2xl font-bold mb-4 text-secondary border-b pb-2" data-lang-key="contact_address_h">Mobilne Biuro Doradcze</h3>
+                            
+                            <p class="text-gray-700 mb-2" data-lang-key="contact_mobile_p1">Spotkanie u klienta, w kawiarni lub online.</p>
+                            <p class="text-gray-700" data-lang-key="contact_mobile_p2">Pełna elastyczność w doborze miejsca.</p>
+                            
+                            <img src="https://via.placeholder.com/600x250?text=Mapa+Obszar+Działania" alt="Mapa obszaru działania doradcy mobilnego" class="mt-4 rounded-lg w-full h-auto object-cover border border-gray-200">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-secondary text-white py-12">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            
+            <div class="mb-4">
+                <a href="#" class="text-accent text-xl font-bold tracking-wider" data-lang-key="company_name">FINANSE BEZ STRESU</a>
+            </div>
+
+            <div class="flex justify-center space-x-6 text-sm mb-6">
+                <a href="#" class="hover:text-accent transition duration-200" data-lang-key="footer_privacy">Polityka Prywatności</a>
+                <a href="#" class="hover:text-accent transition duration-200" data-lang-key="footer_terms">Regulamin Usług</a>
+                <a href="tel:+48517699181" class="hover:text-accent transition duration-200">+48 517 699 181</a>
+            </div>
+
+            <p class="text-gray-400 text-sm" data-lang-key="footer_copy">&copy; 2025 Finanse Bez Stresu - Grupa Doradztwa. Wszelkie prawa zastrzeżone.</p>
+
+        </div>
+    </footer>
 
     <script>
         // Obiekt z tłumaczeniami dla wszystkich kluczowych tekstów na stronie
@@ -506,7 +459,6 @@
                 about_quote: '"Naszym największym sukcesem nie jest wynegocjowany kredyt, ale spokój klienta, który wie, że jego przyszłość jest bezpieczna."',
                 // Korzyści
                 benefits_tagline: 'Nasza Przewaga Konkurencyjna',
-                // ZMIANA: Lepszym -> Najlepszym
                 benefits_title_p1: 'Dlaczego Jesteśmy', benefits_title_p2: 'Najlepszym Wyborem?',
                 benefit1_h: 'Optymalizacja Czasu', benefit1_p: 'Jedno spotkanie z nami zastępuje spotkania w 20 bankach. Maksymalna efektywność procesu.',
                 benefit2_h: 'Dostęp do Ofert Specjalnych', 
@@ -516,7 +468,6 @@
                 // Usługi
                 services_tagline: 'Nasza Specjalizacja',
                 services_title: 'Trzy Filary Twojego Sukcesu',
-                // ZMIANA: Hipoteczny -> Kompleksowe Finansowanie
                 credit_h: 'Kompleksowe Finansowanie i Kredyty',
                 credit_p1: 'Obsługujemy wszystkie rodzaje kredytów: **hipoteczne, konsumpcyjne, firmowe**. Niezależnie od celu, dostarczamy najniższe marże i minimum formalności.',
                 credit_link: 'Uzyskaj Kredyt Marzeń →',
@@ -532,15 +483,17 @@
                 form_message: 'Wiadomość (opisz krótko swój cel finansowy)', form_button: 'WYŚLIJ ZAPYTANIE →',
                 contact_details_h: 'Skontaktuj się z Doradcą', contact_email_h: 'E-mail Biura (Odp. do 4h)', 
                 contact_phone_h: 'Telefon (Linia Priorytetowa)',
-                // ZMIANA: Siedziba Główna -> Mobilne Biuro Doradcze
                 contact_address_h: 'Mobilne Biuro Doradcze',
                 contact_mobile_p1: 'Spotkanie u klienta, w kawiarni lub online.',
                 contact_mobile_p2: 'Pełna elastyczność w doborze miejsca.',
                 // Stopka
                 footer_copy: '&copy; 2025 Finanse Bez Stresu - Grupa Doradztwa. Wszelkie prawa zastrzeżone.',
                 footer_privacy: 'Polityka Prywatności', footer_terms: 'Regulamin Usług',
-                // Komunikaty formularza
-                msg_sending: 'Wysyłanie zapytania... Proszę czekać.', msg_success: 'Sukces! Otrzymaliśmy Twoje zapytanie. Oddzwonimy najszybciej, jak to możliwe.',
+                // Komunikaty formularza (NOWE)
+                msg_sending: 'Wysyłanie zapytania... Proszę czekać.', 
+                msg_success: 'Sukces! Otrzymaliśmy Twoje zapytanie. Oddzwonimy najszybciej, jak to możliwe.',
+                msg_error_data: 'Błąd! Wypełnij wszystkie wymagane pola poprawnymi danymi.',
+                msg_error_send: 'Błąd serwera! Nie udało się wysłać wiadomości. Spróbuj zadzwonić.',
                 msg_phone_ph: '+48 517 699 181',
                 // Nowe komunikaty dla Modalu
                 modal_title: 'Wybierz Szybki Kontakt',
@@ -569,7 +522,6 @@
                 about_quote: '"Наш найбільший успіх — це не отриманий кредит, а спокій клієнта, який знає, що його майбутнє в безпеці."',
                 // Korzyści
                 benefits_tagline: 'Наша Конкурентна Перевага',
-                // ZMIANA: Lepszym -> Najlepszym
                 benefits_title_p1: 'Чому Ми', benefits_title_p2: 'Найкращий Вибір?',
                 benefit1_h: 'Оптимізація Часу', benefit1_p: 'Одна зустріч з нами замінює зустрічі у 20 банках. Максимальна ефективність процесу.',
                 benefit2_h: 'Доступ до Спеціальних Пропозицій', 
@@ -579,7 +531,6 @@
                 // Usługi
                 services_tagline: 'Наша Спеціалізація',
                 services_title: 'Три Стовпи Вашого Успіху',
-                // ZMIANA: Hipoteczny -> Комплексне Фінансування
                 credit_h: 'Комплексне Фінансування та Кредити',
                 credit_p1: 'Ми обслуговуємо всі види кредитів: **іпотечні, споживчі, для компаній**. Незалежно від мети, ми надаємо найнижчі маржі та мінімум формальностей.',
                 credit_link: 'Отримайте Кредит Мрії →',
@@ -595,15 +546,17 @@
                 form_message: 'Повідомлення (коротко опишіть свою фінансову мету)', form_button: 'НАДІСЛАТИ ЗАПИТ →',
                 contact_details_h: 'Зв\'яжіться з Консультантом', contact_email_h: 'Електронна пошта офісу (Відповідь до 4 год)', 
                 contact_phone_h: 'Телефон (Пріоритетна Лінія)', 
-                // ZMIANA: Головний Офіс -> Мобільний Консультаційний Офіс
                 contact_address_h: 'Мобільний Консультаційний Офіс',
                 contact_mobile_p1: 'Зустріч у клієнта, в кав\'ярні або онлайн.',
                 contact_mobile_p2: 'Повна гнучкість у виборі місця.',
                 // Stopka
                 footer_copy: '&copy; 2025 Фінанси Без Стресу - Група Консультування. Всі права захищені.',
                 footer_privacy: 'Політика конфіденційності', footer_terms: 'Регламент Послуг',
-                // Komunikaty formularza
-                msg_sending: 'Надсилання запиту... Будь ласка, зачекайте.', msg_success: 'Успіх! Ми отримали Ваш запит. Ми передзвонимо Вам якомога швидше.',
+                // Komunikaty formularza (NOWE)
+                msg_sending: 'Надсилання запиту... Будь ласка, зачекайте.', 
+                msg_success: 'Успіх! Ми отримали Ваш запит. Ми передзвонимо Вам якомога швидше.',
+                msg_error_data: 'Помилка! Заповніть усі необхідні поля правильними даними.',
+                msg_error_send: 'Помилка сервера! Не вдалося надіслати повідомлення. Спробуйте зателефонувати.',
                 msg_phone_ph: '+48 517 699 181',
                 // Nowe komunikaty dla Modalu
                 modal_title: 'Оберіть Швидкий Зв\'язок',
@@ -632,7 +585,6 @@
                 about_quote: '"Наш самый большой успех — это не полученный кредит, а спокойствие клиента, который знает, что его будущее в безопасности."',
                 // Korzyści
                 benefits_tagline: 'Наше Конкурентное Преимущество',
-                // ZMIANA: Lepszym -> Najlepszym
                 benefits_title_p1: 'Почему Мы', benefits_title_p2: 'Лучший Выбор?',
                 benefit1_h: 'Оптимизация Времени', benefit1_p: 'Одна встреча с нами заменяет встречи в 20 банках. Максимальная эффективность процесса.',
                 benefit2_h: 'Доступ к Специальным Предложениям', 
@@ -642,7 +594,6 @@
                 // Usługi
                 services_tagline: 'Наша Специализация',
                 services_title: 'Три Столпа Вашего Успеха',
-                // ZMIANA: Ипотечный Кредит -> Комплексное Финансирование
                 credit_h: 'Комплексное Финансирование и Кредиты',
                 credit_p1: 'Мы обслуживаем все виды кредитов: **ипотечные, потребительские, для компаний**. Независимо от цели, мы предоставляем самые низкие маржи и минимум формальностей.',
                 credit_link: 'Получите Кредит Мечты →',
@@ -658,15 +609,17 @@
                 form_message: 'Сообщение (кратко опишите свою финансовую цель)', form_button: 'ОТПРАВИТЬ ЗАПРОС →',
                 contact_details_h: 'Свяжитесь с Консультантом', contact_email_h: 'Электронная почта офиса (Ответ до 4 ч)', 
                 contact_phone_h: 'Телефон (Приоритетная Линия)', 
-                // ZMIANA: Главный Офис -> Мобильный Консультационный Офис
                 contact_address_h: 'Мобильный Консультационный Офис',
                 contact_mobile_p1: 'Встреча у клиента, в кафе или онлайн.',
                 contact_mobile_p2: 'Полная гибкость в выборе места.',
                 // Stopka
                 footer_copy: '&copy; 2025 Финансы Без Стресса - Группа Консультирования. Все права защищены.',
                 footer_privacy: 'Политика конфиденциальности', footer_terms: 'Регламент Услуг',
-                // Komunikaty formularza
-                msg_sending: 'Отправка запроса... Пожалуйста, подождите.', msg_success: 'Успех! Мы получили Ваш запрос. Мы перезвоним Вам как можно скорее.',
+                // Komunikaty formularza (NOWE)
+                msg_sending: 'Отправка запроса... Пожалуйста, подождите.', 
+                msg_success: 'Успех! Мы получили Ваш запрос. Мы перезвоним Вам как можно скорее.',
+                msg_error_data: 'Ошибка! Заполните все необходимые поля правильными данными.',
+                msg_error_send: 'Ошибка сервера! Не удалось отправить сообщение. Попробуйте позвонить.',
                 msg_phone_ph: '+48 517 699 181',
                 // Nowe komunikaty dla Modalu
                 modal_title: 'Выберите Быстрый Контакт',
@@ -679,7 +632,7 @@
             }
         };
 
-        // --- Logika Modalu i Przewijania (BEZ ZMIAN) ---
+        // --- Logika Modalu i Przewijania (Bez Zmian) ---
 
         // Otwiera modal - Ustawia display na 'flex' aby był widoczny
         function openContactModal() {
@@ -718,7 +671,7 @@
             }
         }
 
-        // --- Logika Językowa (BEZ ZMIAN) ---
+        // --- Logika Językowa (Bez Zmian) ---
 
         // Funkcja do zmiany języka
         function setLanguage(lang) {
@@ -747,44 +700,67 @@
             // 4. Aktualizacja placeholdera w formularzu
             const phoneInput = document.getElementById('phone');
             if (phoneInput) {
+                // Używamy tego samego klucza, co w tłumaczeniach, do ustawienia placeholdera
                 phoneInput.placeholder = currentLangData.msg_phone_ph; 
             }
         }
+        
+        // --- NOWA Logika Obsługi Statusu po Wysyłce PHP ---
 
-        // --- Logika Formularza (Symulacja, BEZ ZMIAN) ---
-
-        // Funkcja do obsługi formularza (symulacja wysyłki na backend)
-        function handleFormSubmit(event) {
-            event.preventDefault();
-            const form = event.target;
+        // Pomocnicza funkcja do przewijania do komunikatu
+        function scrollToStatusMessage() {
+             const formSection = document.getElementById('contact');
+             if (formSection) {
+                 const offset = document.querySelector('header').offsetHeight;
+                 const top = formSection.offsetTop - offset;
+                 window.scrollTo({ top: top, behavior: 'smooth' });
+             }
+        }
+        
+        // Funkcja wyświetlająca komunikat po przekierowaniu z PHP
+        function displayFormStatus() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const status = urlParams.get('status');
             const messageDiv = document.getElementById('formMessage');
-            
             const currentLang = document.documentElement.lang || 'pl';
             const currentMessages = translations[currentLang];
 
-            // Resetowanie i ustawianie komunikatu "Wysyłanie"
+            // Resetowanie wyglądu
             messageDiv.classList.add('hidden');
-            messageDiv.classList.remove('bg-red-200', 'text-red-800', 'bg-green-600', 'text-white', 'bg-slate-700', 'text-white');
+            messageDiv.classList.remove('bg-red-200', 'text-red-800', 'bg-green-600', 'text-white');
             
-            messageDiv.textContent = currentMessages.msg_sending;
-            messageDiv.classList.remove('hidden');
-            // Zmieniono kolor ładowania na elegancki szary na białym
-            messageDiv.classList.add('bg-gray-100', 'text-gray-700'); 
-
-            // Symulacja opóźnienia sieci
-            setTimeout(() => {
+            if (status === 'success') {
                 messageDiv.textContent = currentMessages.msg_success;
-                messageDiv.classList.remove('bg-gray-100', 'text-gray-700');
+                messageDiv.classList.remove('hidden');
                 messageDiv.classList.add('bg-green-600', 'text-white'); // Komunikat sukcesu na zielono
-                form.reset(); 
-            }, 2000); // Wydłużono czas symulacji
+                // Po sukcesie resetujemy formularz
+                document.querySelector('form').reset();
+                scrollToStatusMessage();
+            } else if (status === 'error_data') {
+                messageDiv.textContent = currentMessages.msg_error_data;
+                messageDiv.classList.remove('hidden');
+                messageDiv.classList.add('bg-red-200', 'text-red-800');
+                scrollToStatusMessage();
+            } else if (status === 'error_send') {
+                messageDiv.textContent = currentMessages.msg_error_send;
+                messageDiv.classList.remove('hidden');
+                messageDiv.classList.add('bg-red-200', 'text-red-800');
+                scrollToStatusMessage();
+            }
+            
+            // Czyścimy parametry z URL, żeby komunikat nie pojawiał się po odświeżeniu
+            if (status) {
+                 const cleanUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+                 window.history.replaceState({ path: cleanUrl }, '', cleanUrl);
+            }
         }
 
-        // Ustaw język domyślny na polski po załadowaniu strony
+
+        // Ustaw język domyślny na polski ORAZ sprawdź status po załadowaniu strony
         document.addEventListener('DOMContentLoaded', () => {
             setLanguage('pl');
+            displayFormStatus(); 
         });
     </script>
-
 </body>
 </html>
