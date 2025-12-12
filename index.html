@@ -4,29 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Finanse bez Stresu - Doradztwo Premium</title>
+    <!-- SEO i Open Graph -->
+    <meta name="description" content="Doradztwo finansowe premium: kredyty, ubezpieczenia, leasing bez stresu. Najlepsze warunki, pełna transparentność i wsparcie w języku polskim, ukraińskim i rosyjskim.">
+    <meta property="og:title" content="Finanse bez Stresu - Doradztwo Premium">
+    <meta property="og:description" content="Przejmujemy formalności i negocjujemy warunki kredytu lub ubezpieczenia, abyś mógł skupić się na tym, co naprawdę ważne.">
+    <meta property="og:image" content="https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?auto=compress&cs=tinysrgb&w=800">
+    <meta property="og:url" content="https://finansebezstresu.pl">
+    <meta property="og:type" content="website">
+    
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- EmailJS -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f5f5f5; /* JASNE: Jasny, kremowy beż dla tła */
-            color: #1a1a1a; /* CIEMNY: Głęboki, elegancki kolor tekstu */
+            background-color: #f5f5f5;
+            color: #1a1a1a;
         }
-        /* Definicja Kolorów Akcentu */
         :root {
-            --color-accent: #b8860b; /* ZŁOTY: Głębokie złoto, symbol luksusu */
-            --color-secondary: #0a1930; /* GRANATOWY: Morski Granat, głęboki kontrast */
-            --color-insurance: #1e8449; /* CIEMNA ZIELEŃ: Elegancka zieleń dla sekcji ubezpieczeń */
+            --color-accent: #b8860b;
+            --color-secondary: #0a1930;
+            --color-insurance: #1e8449;
         }
-        /* Dynamiczne tło dla sekcji Hero (symulacja danych) */
         .hero-bg {
-            background-color: var(--color-secondary); /* Używamy głębokiego granatu */
+            background-color: var(--color-secondary);
             position: relative;
             overflow: hidden;
-            border-bottom: 5px solid var(--color-accent); /* Linia akcentu - złota */
+            border-bottom: 5px solid var(--color-accent);
         }
-        
-        /* Animacja siatki w tle Hero */
         .hero-grid {
             position: absolute;
             top: 0;
@@ -34,61 +40,50 @@
             width: 100%;
             height: 100%;
             z-index: 0;
-            opacity: 0.15; /* Zwiększona widoczność na ciemnym tle */
+            opacity: 0.15;
             pointer-events: none;
-            background-image: radial-gradient(#ffffff 1px, transparent 1px); /* Biała siatka na granacie */
+            background-image: radial-gradient(#ffffff 1px, transparent 1px);
             background-size: 30px 30px;
             animation: pulseGrid 15s infinite alternate;
         }
-
         @keyframes pulseGrid {
             from { background-size: 30px 30px; opacity: 0.15; }
             to { background-size: 40px 40px; opacity: 0.1; }
         }
-
-        /* Styl dla przycisków Premium (Złoty Akcent) */
         .btn-premium {
             background-color: var(--color-accent);
-            color: #ffffff; /* Biały tekst na złotym */
+            color: #ffffff;
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             font-weight: 700;
-            box-shadow: 0 10px 20px -5px rgba(184, 134, 11, 0.5); /* Cień złotego przycisku */
+            box-shadow: 0 10px 20px -5px rgba(184, 134, 11, 0.5);
             border: none;
         }
         .btn-premium:hover {
-            background-color: #d4af37; /* Jaśniejsze złoto */
+            background-color: #d4af37;
             transform: translateY(-3px);
             box-shadow: 0 15px 30px -8px rgba(184, 134, 11, 0.7);
         }
-
-        /* Styl dla kart z efektem głębi */
         .card-depth {
-            background-color: #ffffff; /* Czysta Biel dla kart */
+            background-color: #ffffff;
             border-radius: 1rem;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1); /* Delikatny, luksusowy cień */
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease-in-out;
-            border: 1px solid #e0e0e0; /* Delikatna ramka */
+            border: 1px solid #e0e0e0;
         }
         .card-depth:hover {
             transform: translateY(-8px);
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
-            border-color: var(--color-accent); /* Złota ramka przy najechaniu */
+            border-color: var(--color-accent);
         }
-        
-        /* Styl dla ikony SVG w sekcji usług */
         .service-icon {
             width: 55px; 
             height: 55px; 
             margin-bottom: 1rem;
             color: currentColor; 
         }
-
-        /* Nowoczesny pasek nawigacyjny */
         .navbar-shadow {
-             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08); /* Delikatny cień na jasnym tle */
+             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
         }
-
-        /* Pełne style dla Modalu Kontaktowego */
         .modal {
             display: none; 
             position: fixed;
@@ -98,30 +93,27 @@
             width: 100%;
             height: 100%;
             overflow: auto;
-            background-color: rgba(0, 0, 0, 0.7); /* Półprzezroczyste czarne tło */
+            background-color: rgba(0, 0, 0, 0.7);
             justify-content: center;
             align-items: center;
         }
-
         .modal-content {
-            background-color: #ffffff; /* Białe tło modala */
+            background-color: #ffffff;
             margin: 5% auto; 
             padding: 30px;
             border-radius: 1.5rem;
-            border: 2px solid var(--color-accent); /* Złota ramka */
+            border: 2px solid var(--color-accent);
             width: 90%; 
             max-width: 550px; 
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
             animation: fadeIn 0.3s ease-out;
         }
-
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(-20px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
         .modal-option {
-            background-color: #f0f0f0; /* Jasny szary dla opcji */
+            background-color: #f0f0f0;
             color: #1a1a1a;
             border: 2px solid transparent;
             cursor: pointer;
@@ -130,14 +122,13 @@
         .modal-option:hover {
             background-color: #e5e5e5;
         }
-        /* Style dla opcji premium w modal */
         .modal-option.premium {
-            background-color: var(--color-accent) !important; /* Złote tło */
-            color: #ffffff !important; /* Biały tekst */
+            background-color: var(--color-accent) !important;
+            color: #ffffff !important;
             border-color: var(--color-accent);
         }
         .modal-option.premium:hover {
-            background-color: #d4af37 !important; /* Jaśniejsze złoto */
+            background-color: #d4af37 !important;
         }
     </style>
 </head>
@@ -169,10 +160,10 @@
         </div>
         <div id="mobile-menu" class="hidden md:hidden bg-white shadow-xl border-t border-gray-200">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100" data-lang-key="nav_about">O nas</a>
-                <a href="#benefits" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100" data-lang-key="nav_benefits">Wartości</a>
-                <a href="#services" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100" data-lang-key="nav_services">Oferta</a>
-                <button onclick="openContactModal()" class="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100" data-lang-key="nav_contact">Kontakt</button>
+                <a href="#about" onclick="document.getElementById('mobile-menu').classList.add('hidden')" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100" data-lang-key="nav_about">O nas</a>
+                <a href="#benefits" onclick="document.getElementById('mobile-menu').classList.add('hidden')" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100" data-lang-key="nav_benefits">Wartości</a>
+                <a href="#services" onclick="document.getElementById('mobile-menu').classList.add('hidden')" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100" data-lang-key="nav_services">Oferta</a>
+                <button onclick="openContactModal(); document.getElementById('mobile-menu').classList.add('hidden')" class="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100" data-lang-key="nav_contact">Kontakt</button>
                 <select id="language-selector-mobile" onchange="setLanguage(this.value)" class="w-full mt-2 bg-gray-100 border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-[var(--color-accent)] focus:border-[var(--color-accent)] p-2 cursor-pointer">
                     <option value="pl">🇵🇱 PL</option>
                     <option value="uk">🇺🇦 UKR</option>
@@ -185,18 +176,16 @@
     <main>
         <section class="hero-bg text-white pt-20 pb-20 sm:pt-32 sm:pb-32 lg:pt-20 lg:pb-20 rounded-b-none relative">
             <div class="hero-grid"></div>
-            
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-                
                 <div class="grid lg:grid-cols-2 gap-10 items-center">
                     <div class="text-left">
                         <p class="text-lg text-[var(--color-accent)] font-semibold uppercase tracking-widest mb-4" data-lang-key="hero_tagline">
                             Doradztwo Finansowe Nowej Generacji
                         </p>
-                        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight mb-6 tracking-tight">
+                        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold leading-tight mb-6 tracking-tight">
                             <span data-lang-key="hero_title_p1">SKOMPLIKOWANE FINANSE,</span> <br class="hidden sm:block"> <span class="text-white" data-lang-key="hero_title_p2">PROSTE DECYZJE.</span>
                         </h1>
-                        <p class="text-xl sm:text-xl font-light mb-10 opacity-90" data-lang-key="hero_subtitle">
+                        <p class="text-xl font-light mb-10 opacity-90" data-lang-key="hero_subtitle">
                             Przejmujemy formalności i negocjujemy warunki kredytu lub ubezpieczenia, abyś mógł skupić się na tym, co naprawdę ważne.
                         </p>
                         <button onclick="openContactModal()" class="inline-block btn-premium font-bold py-3 px-8 rounded-full shadow-2xl transform hover:scale-105 transition duration-300" data-lang-key="hero_button">
@@ -207,24 +196,23 @@
                         <img 
                             src="https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?auto=compress&cs=tinysrgb&w=800" 
                             onerror="this.onerror=null;this.src='https://placehold.co/600x400/0a1930/a8a8a8?text=Wizualizacja+Sukcesu'"
-                            alt="Profesjonalny doradca finansowy analizujący dane"
+                            alt="Profesjonalny doradca finansowy analizujący dane na tablecie"
                             class="rounded-3xl shadow-2xl border-4 border-[var(--color-accent)] max-w-full h-auto lg:max-w-md w-full"
                         >
                         <div class="absolute inset-0 bg-gradient-to-t from-[#0a1930] to-transparent opacity-30 rounded-3xl pointer-events-none"></div>
                     </div>
                 </div>
-
             </div>
         </section>
 
         <section id="about" class="py-16 sm:py-24">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div klasy="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="grid lg:grid-cols-2 gap-12 items-center">
                     <div class="order-2 lg:order-1 relative">
                         <img 
                             src="https://images.pexels.com/photos/3184420/pexels-photo-3184420.jpeg?auto=compress&cs=tinysrgb&w=800" 
                             onerror="this.onerror=null;this.src='https://placehold.co/600x400/0a1930/a8a8a8?text=Nasz+Zespol'"
-                            alt="Portret uśmiechniętej doradczyni finansowej"
+                            alt="Uśmiechnięta doradczyni finansowa w profesjonalnym otoczeniu"
                             class="rounded-3xl shadow-2xl border-4 border-gray-300 w-full h-auto object-cover max-h-96"
                         >
                         <div class="absolute bottom-4 left-4 right-4 bg-black bg-opacity-70 p-4 rounded-xl backdrop-blur-sm border border-[var(--color-accent)]">
@@ -301,7 +289,6 @@
                 </div>
             </div>
         </section>
-
 
         <section id="services" class="py-16 sm:py-24 bg-gray-50">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -386,7 +373,7 @@
                                 </div>
                                 <div>
                                     <label for="phone" class="block text-sm font-medium text-gray-700 mb-1"><span data-lang-key="form_phone">Telefon (Konieczny do oddzwonienia)</span></label>
-                                    <input type="tel" id="phone" name="phone" required class="w-full p-3 bg-gray-100 border border-gray-300 text-black rounded-xl focus:ring-[var(--color-accent)] focus:border-[var(--color-accent)] transition duration-150 shadow-inner" placeholder="+48 517 699 181">
+                                    <input type="tel" id="phone" name="phone" required class="w-full p-3 bg-gray-100 border border-gray-300 text-black rounded-xl focus:ring-[var(--color-accent)] focus:border-[var(--color-accent)] transition duration-150 shadow-inner">
                                 </div>
                                 <div>
                                     <label for="message" class="block text-sm font-medium text-gray-700 mb-1"><span data-lang-key="form_message">Wiadomość (opisz krótko swój cel finansowy)</span></label>
@@ -407,7 +394,7 @@
                                 <span class="mr-3 text-3xl text-white">📧</span>
                                 <div>
                                     <p class="font-semibold" data-lang-key="contact_email_h">E-mail Biura (Odp. do 4h)</p>
-                                    <a href="mailto:biuro@finansebezstresu.pl" class="text-gray-300 hover:text-white hover:underline transition duration-150">biuro@finansebezstresu.pl</a>
+								  <a href="mailto:biuro@finansebezstresu.pl" class="text-gray-300 hover:text-white hover:underline transition duration-150">biuro@finansebezstresu.pl</a>
                                 </div>
                             </div>
                             <div class="flex items-start mb-6">
@@ -442,8 +429,8 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <p data-lang-key="footer_copy">&copy; 2025 Finanse Bez Stresu - Grupa Doradztwa. Wszelkie prawa zastrzeżone.</p>
             <p class="mt-2 text-sm">
-                <a href="#" class="hover:text-[var(--color-accent)] transition duration-150" data-lang-key="footer_privacy">Polityka Prywatności</a> |
-                <a href="#" class="hover:text-[var(--color-accent)] transition duration-150" data-lang-key="footer_terms">Regulamin Usług</a>
+                <a href="/privacy.html" class="hover:text-[var(--color-accent)] transition duration-150" data-lang-key="footer_privacy">Polityka Prywatności</a> |
+                <a href="/terms.html" class="hover:text-[var(--color-accent)] transition duration-150" data-lang-key="footer_terms">Regulamin Usług</a>
             </p>
         </div>
     </footer>
@@ -486,8 +473,12 @@
     </div>
 
     <script>
-        // Obiekt z tłumaczeniami dla wszystkich kluczowych tekstów na stronie
-        const translations = {
+        // Inicjalizacja EmailJS
+        (function(){
+            emailjs.init("YOUR_PUBLIC_KEY"); // ZMIEŃ NA SWÓJ PUBLIC KEY
+        })();
+
+  const translations = {
             pl: {
                 company_name: 'FINANSE BEZ STRESU',
                 // Nawigacja
@@ -678,113 +669,82 @@
                 modal_option3_p: 'Сообщество, текущие вопросы и советы'
             }
         };
-
-        // --- Logika Modalu i Przewijania (BEZ ZMIAN) ---
-
-        // Otwiera modal - Ustawia display na 'flex' aby był widoczny
+        
         function openContactModal() {
             document.getElementById('contactModal').style.display = 'flex';
         }
 
-        // Zamyka modal
         function closeContactModal(event) {
-            // Zamykanie tylko jeśli kliknięcie było na tle (id="contactModal") lub przycisku X
-            if (event && event.target.id && event.target.id !== 'contactModal' && event.target.closest('#contactModal').id === 'contactModal') {
-                return;
+            const modal = document.getElementById('contactModal');
+            if (event && event.target === modal) {
+                modal.style.display = 'none';
             }
-            document.getElementById('contactModal').style.display = 'none';
         }
-        
-        // Przewija do sekcji kontaktowej po kliknięciu w formularz w modal
+
         function scrollToContactForm() {
             closeContactModal();
             const contactSection = document.getElementById('contact');
             if (contactSection) {
-                // Przewinięcie z lekkim przesunięciem, aby nagłówek był widoczny poniżej sticky menu
                 const offset = document.querySelector('header').offsetHeight;
-                const top = contactSection.offsetTop - offset;
+                const top = contactSection.offsetTop - offset - 20;
                 window.scrollTo({ top: top, behavior: 'smooth' });
-                
-                // Wizualne podświetlenie formularza
                 const formContainer = document.querySelector('#contact .card-depth');
                 if(formContainer) {
-                    formContainer.style.transition = 'box-shadow 0.3s ease-in-out';
-                    // Zmieniono na złoty blask
-                    formContainer.style.boxShadow = '0 0 40px rgba(184, 134, 11, 0.8)'; 
+                    formContainer.style.boxShadow = '0 0 40px rgba(184, 134, 11, 0.8)';
                     setTimeout(() => {
-                        formContainer.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)'; // Powrót do normalnego cienia
+                        formContainer.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
                     }, 2000);
                 }
             }
         }
 
-        // --- Logika Językowa (BEZ ZMIAN) ---
-
-        // Funkcja do zmiany języka
         function setLanguage(lang) {
             const currentLangData = translations[lang];
-
-            // 1. Tłumaczenie elementów z atrybutem data-lang-key
             document.querySelectorAll('[data-lang-key]').forEach(element => {
                 const key = element.getAttribute('data-lang-key');
                 if (currentLangData[key]) {
-                    // Zamieniamy ** na <strong> dla pogrubienia w tekście
                     let htmlContent = currentLangData[key];
                     htmlContent = htmlContent.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
                     element.innerHTML = htmlContent;
                 }
             });
-
-            // 2. Aktualizacja selektorów języka
-            const selectors = document.querySelectorAll('select[id^="language-selector"]');
-            selectors.forEach(selector => {
+            document.querySelectorAll('select[id^="language-selector"]').forEach(selector => {
                 selector.value = lang;
             });
-
-            // 3. Aktualizacja atrybutu lang w HTML
             document.documentElement.lang = lang;
-
-            // 4. Aktualizacja placeholdera w formularzu
             const phoneInput = document.getElementById('phone');
             if (phoneInput) {
-                phoneInput.placeholder = currentLangData.msg_phone_ph; 
+                phoneInput.placeholder = currentLangData.msg_phone_ph || '+48 517 699 181';
             }
         }
 
-        // --- Logika Formularza (Symulacja, BEZ ZMIAN) ---
-
-        // Funkcja do obsługi formularza (symulacja wysyłki na backend)
         function handleFormSubmit(event) {
             event.preventDefault();
             const form = event.target;
             const messageDiv = document.getElementById('formMessage');
-            
             const currentLang = document.documentElement.lang || 'pl';
             const currentMessages = translations[currentLang];
 
-            // Resetowanie i ustawianie komunikatu "Wysyłanie"
-            messageDiv.classList.add('hidden');
-            messageDiv.classList.remove('bg-red-200', 'text-red-800', 'bg-green-600', 'text-white', 'bg-slate-700', 'text-white');
-            
-            messageDiv.textContent = currentMessages.msg_sending;
-            messageDiv.classList.remove('hidden');
-            // Zmieniono kolor ładowania na elegancki szary na białym
-            messageDiv.classList.add('bg-gray-100', 'text-gray-700'); 
+            messageDiv.classList.remove('hidden', 'bg-green-600', 'text-white', 'bg-red-200', 'text-red-800');
+            messageDiv.textContent = currentMessages.msg_sending || 'Wysyłanie...';
+            messageDiv.classList.add('bg-gray-100', 'text-gray-700');
 
-            // Symulacja opóźnienia sieci
-            setTimeout(() => {
-                messageDiv.textContent = currentMessages.msg_success;
-                messageDiv.classList.remove('bg-gray-100', 'text-gray-700');
-                messageDiv.classList.add('bg-green-600', 'text-white'); // Komunikat sukcesu na zielono
-                form.reset(); 
-            }, 2000); // Wydłużono czas symulacji
+            emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', form)
+                .then(() => {
+                    messageDiv.textContent = currentMessages.msg_success || 'Sukces! Otrzymaliśmy Twoje zapytanie.';
+                    messageDiv.classList.remove('bg-gray-100', 'text-gray-700');
+                    messageDiv.classList.add('bg-green-600', 'text-white');
+                    form.reset();
+                }, (error) => {
+                    console.error('EmailJS error', error);
+                    messageDiv.textContent = 'Błąd wysyłania. Spróbuj ponownie lub zadzwoń bezpośrednio.';
+                    messageDiv.classList.add('bg-red-200', 'text-red-800');
+                });
         }
 
-        // Ustaw język domyślny na polski po załadowaniu strony
         document.addEventListener('DOMContentLoaded', () => {
             setLanguage('pl');
         });
     </script>
-
 </body>
 </html>
