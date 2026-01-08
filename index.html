@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -139,7 +140,8 @@
             <div class="flex justify-between items-center h-24">
                 <div class="flex-shrink-0">
                     <a href="#" class="text-3xl font-extrabold text-black">
-                        <span class="text-4xl mr-1 text-[var(--color-accent)]">⚡</span> <span data-lang-key="company_name">FINANSE BEZ STRESU</span>
+                        <img src="logo.png" alt="Finanse Bez Stresu" class="h-12 inline-block mr-2" />
+                        <span data-lang-key="company_name">FINANSE BEZ STRESU</span>
                     </a>
                 </div>
                 <nav class="hidden md:flex space-x-10 items-center">
@@ -206,7 +208,7 @@
         </section>
 
         <section id="about" class="py-16 sm:py-24">
-            <div klasy="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="grid lg:grid-cols-2 gap-12 items-center">
                     <div class="order-2 lg:order-1 relative">
                         <img 
@@ -360,77 +362,7 @@
                 <div class="lg:flex lg:space-x-12">
                     
                     <div class="lg:w-2/3 card-depth p-8 sm:p-12">
-                        <h3 class="text-3xl font-bold text-[var(--color-secondary)] mb-8 border-b border-gray-200 pb-4" data-lang-key="form_h">Wypełnij formularz – Ekspresowo Oddzwonimy.</h3>
-                        <form id="contactForm" onsubmit="handleFormSubmit(event)">
-                            <div class="space-y-6">
-                                <div>
-                                    <label for="name" class="block text-sm font-medium text-gray-700 mb-1"><span data-lang-key="form_name">Imię i Nazwisko</span></label>
-                                    <input type="text" id="name" name="name" required class="w-full p-3 bg-gray-100 border border-gray-300 text-black rounded-xl focus:ring-[var(--color-accent)] focus:border-[var(--color-accent)] transition duration-150 shadow-inner">
-                                </div>
-                                <div>
-                                    <label for="email" class="block text-sm font-medium text-gray-700 mb-1"><span data-lang-key="form_email">E-mail</span></label>
-                                    <input type="email" id="email" name="email" required class="w-full p-3 bg-gray-100 border border-gray-300 text-black rounded-xl focus:ring-[var(--color-accent)] focus:border-[var(--color-accent)] transition duration-150 shadow-inner">
-                                </div>
-                                <div>
-                                    <label for="phone" class="block text-sm font-medium text-gray-700 mb-1"><span data-lang-key="form_phone">Telefon (Konieczny do oddzwonienia)</span></label>
-                                    <input type="tel" id="phone" name="phone" required class="w-full p-3 bg-gray-100 border border-gray-300 text-black rounded-xl focus:ring-[var(--color-accent)] focus:border-[var(--color-accent)] transition duration-150 shadow-inner">
-                                </div>
-                                <div>
-                                    <label for="message" class="block text-sm font-medium text-gray-700 mb-1"><span data-lang-key="form_message">Wiadomość (opisz krótko swój cel finansowy)</span></label>
-                                    <textarea id="message" name="message" rows="5" required class="w-full p-3 bg-gray-100 border border-gray-300 text-black rounded-xl focus:ring-[var(--color-accent)] focus:border-[var(--color-accent)] transition duration-150 shadow-inner"></textarea>
-                                </div>
-                                <div id="formMessage" class="hidden p-4 rounded-xl text-center font-bold"></div>
-                                <button type="submit" class="w-full btn-premium font-bold py-4 rounded-xl shadow-xl transform hover:scale-[1.01]" data-lang-key="form_button">
-                                    WYŚLIJ ZAPYTANIE &rarr;
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-
-                    <div class="lg:w-1/3 mt-12 lg:mt-0 space-y-8 p-8 bg-[#0a1930] text-white rounded-3xl shadow-xl border border-[var(--color-accent)] flex flex-col justify-between">
-                        <div>
-                            <h3 class="text-2xl font-bold border-b border-gray-700 pb-4 mb-6 text-[var(--color-accent)]" data-lang-key="contact_details_h">Skontaktuj się z Doradcą</h3>
-                            <div class="flex items-start mb-6">
-                                <span class="mr-3 text-3xl text-white">📧</span>
-                                <div>
-                                    <p class="font-semibold" data-lang-key="contact_email_h">E-mail Biura (Odp. do 4h)</p>
-								  <a href="mailto:biuro@finansebezstresu.pl" class="text-gray-300 hover:text-white hover:underline transition duration-150">biuro@finansebezstresu.pl</a>
-                                </div>
-                            </div>
-                            <div class="flex items-start mb-6">
-                                <span class="mr-3 text-3xl text-[var(--color-accent)]">📞</span>
-                                <div>
-                                    <p class="font-semibold" data-lang-key="contact_phone_h">Telefon (Linia Priorytetowa)</p>
-                                    <a href="tel:+48517699181" class="text-xl text-[var(--color-accent)] hover:text-white hover:underline transition duration-150 font-mono">+48 517 699 181</a>
-                                </div>
-                            </div>
-                            <div class="flex items-start">
-                                <span class="mr-3 text-3xl text-white">🚗</span>
-                                <div>
-                                    <p class="font-semibold" data-lang-key="contact_address_h">Mobilne Biuro Doradcze</p>
-                                    <p data-lang-key="contact_mobile_p1">Spotkanie u klienta, w kawiarni lub online.</p>
-                                    <p data-lang-key="contact_mobile_p2">Pełna elastyczność w doborze miejsca.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="pt-8 border-t border-gray-700 flex justify-center space-x-6">
-                            <a href="https://www.facebook.com/share/g/1CT649ho6K/?mibextid=wwXIfr" target="_blank" class="text-white hover:text-[var(--color-accent)] transition duration-150 transform hover:scale-110">
-                                <svg class="w-9 h-9" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.043c-5.467 0-9.927 4.415-9.927 9.873 0 5.093 3.684 9.351 8.533 9.743v-7.018h-2.316v-2.725h2.316v-2.007c0-2.289 1.366-3.567 3.473-3.567 1.002 0 1.968.178 1.968.178v2.17h-1.111c-1.1 0-1.444.686-1.444 1.401v1.825h2.553l-.409 2.725h-2.144v7.018c4.849-.392 8.533-4.65 8.533-9.743 0-5.458-4.46-9.873-9.927-9.873z"/></svg>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <footer class="bg-white text-gray-500 py-8 border-t border-gray-200">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <p data-lang-key="footer_copy">&copy; 2025 Finanse Bez Stresu - Grupa Doradztwa. Wszelkie prawa zastrzeżone.</p>
-            <p class="mt-2 text-sm">
-                <a href="/privacy.html" class="hover:text-[var(--color-accent)] transition duration-150" data-lang-key="footer_privacy">Polityka Prywatności</a> |
-                <a href="/terms.html" class="hover:text-[var(--color-accent)] transition duration-150" data-lang-key="footer_terms">Regulamin Usług</a>
+                        <h3 class="text-3xl font-bold text-[var(--color-secondary)] mb-8 border-b border-gray-20...(truncated 6423 characters)...      <a href="/terms.html" class="hover:text-[var(--color-accent)] transition duration-150" data-lang-key="footer_terms">Regulamin Usług</a>
             </p>
         </div>
     </footer>
@@ -753,3 +685,4 @@
     </script>
 </body>
 </html>
+```
